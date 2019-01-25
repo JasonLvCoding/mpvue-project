@@ -28,8 +28,10 @@ export default {
   },
 
   created() {
-    this.$store.dispatch('GetPosts')
-      .then(res => {})
+    this.$store.dispatch('Login',{
+      name: 'Jason',
+      password: 'Song1314!'
+    }).then(res => {})
       .catch(err => {})
   },
 

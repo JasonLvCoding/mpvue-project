@@ -1,10 +1,10 @@
 import fly from '@/utils/request'
 
 export default {
-  getPosts
+  login
 }
 
 // 获取设备信息
-function getPosts() {
-  return fly.get('/api/users')
+function login(param) {
+  return fly.post('/api/auth', param)
 }
