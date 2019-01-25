@@ -26,7 +26,8 @@
         </mp-navbar>
       </div>
       <div class="list-wrap">
-        <my-list :list="listData"></my-list>
+        <container-list :list="containerList" v-if="tab.activeIndex == 0"></container-list>
+        <shop-list :list="shopList" v-else></shop-list>
       </div>
     </div>
   </div>
@@ -45,7 +46,8 @@ export default {
     mySwiper,
     mpNavbar,
     mpGrid,
-    myList
+    containerList: myList,
+    shopList: myList,
   },
 
   data() {
@@ -65,52 +67,96 @@ export default {
       },
       tab: {
         activeIndex: 0,
-        tabs: ['智能柜', '门店'],
+        tabs: ['云柜', '门店'],
       },
       gridData: [
-        { src: '/static/images/empty.png', name: '上门取衣', url: '/pages/samples/panel/main' },
-        { src: '/static/images/restart.png', name: '智能洗衣', url: '/pages/index/main' },
+        { src: '/static/images/empty.png', name: '上门服务', url: '/pages/samples/panel/main' },
+        { src: '/static/images/restart.png', name: '智能搞事', url: '/pages/index/main' },
         { src: '/static/images/reduction.png', name: '我要领券', url: '/pages/index/main' },
         { src: '/static/images/recovery.png', name: '购卡充值', url: '/pages/index/main' },
       ],
-      listData:[
+      containerList:[
         {
           imgUrl: '/static/images/recovery.png',
-          title: '一段标题',
+          title: '①号货柜',
           subtitle: '品牌名称',
           description: '一段描述一段描述一段描述一段描述一段描述'
         },
         {
           imgUrl: '/static/images/recovery.png',
-          title: '一段标题',
+          title: '②号货柜',
           subtitle: '品牌名称',
           description: '一段描述一段描述一段描述一段描述一段描述'
         },
         {
           imgUrl: '/static/images/recovery.png',
-          title: '一段标题',
+          title: '③号货柜',
           subtitle: '品牌名称',
           description: '一段描述一段描述一段描述一段描述一段描述'
         },
         {
           imgUrl: '/static/images/recovery.png',
-          title: '一段标题',
+          title: '④号货柜',
           subtitle: '品牌名称',
-          description: '一段描述'
+          description: '一段描述一段描述一段描述一段描述一段描述'
         },
         {
           imgUrl: '/static/images/recovery.png',
-          title: '一段标题',
+          title: '⑤号货柜',
           subtitle: '品牌名称',
-          description: '一段描述一段描述一段描述一段描述一段描述一段描述'
-        }
+          description: '一段描述一段描述一段描述一段描述一段描述'
+        },
+        {
+          imgUrl: '/static/images/recovery.png',
+          title: '⑥号货柜',
+          subtitle: '品牌名称',
+          description: '一段描述一段描述一段描述一段描述一段描述'
+        },
+      ],
+      shopList:[
+        {
+          imgUrl: '/static/images/recovery.png',
+          title: '①号店铺',
+          subtitle: '品牌名称',
+          description: '一段描述一段描述一段描述一段描述一段描述'
+        },
+        {
+          imgUrl: '/static/images/recovery.png',
+          title: '②号店铺',
+          subtitle: '品牌名称',
+          description: '一段描述一段描述一段描述一段描述一段描述'
+        },
+        {
+          imgUrl: '/static/images/recovery.png',
+          title: '③号店铺',
+          subtitle: '品牌名称',
+          description: '一段描述一段描述一段描述一段描述一段描述'
+        },
+        {
+          imgUrl: '/static/images/recovery.png',
+          title: '④号店铺',
+          subtitle: '品牌名称',
+          description: '一段描述一段描述一段描述一段描述一段描述'
+        },
+        {
+          imgUrl: '/static/images/recovery.png',
+          title: '⑤号店铺',
+          subtitle: '品牌名称',
+          description: '一段描述一段描述一段描述一段描述一段描述'
+        },
+        {
+          imgUrl: '/static/images/recovery.png',
+          title: '⑥号店铺',
+          subtitle: '品牌名称',
+          description: '一段描述一段描述一段描述一段描述一段描述'
+        },
       ]
     }
   },
 
   methods: {
     tabClick(index) {
-      console.log(index)
+      this.tab.activeIndex = index;
     }
   },
 
