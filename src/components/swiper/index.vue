@@ -1,5 +1,5 @@
 <template>
-  <div class="swiper-wrap">
+  <div class="swiper-container">
     <div class="page__bd page__bd_spacing">
       <swiper :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration" :circular="circular" @change="swiperChange" @animationfinish="animationfinish">
         <div v-for="item in imgUrls" :key="item">

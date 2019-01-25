@@ -1,21 +1,20 @@
 <template>
-  <div class="page-wrap">
+  <div class="index-wrap">
     <div class="searchbar-wrap">
       <mp-searchbar
-        :isFocus="false"
+        @blur="searchbar.isFocus = false"
+        @isFocus="searchbar.isFocus"
         :confirmType="searchbar.confirmType"
         v-model="searchbar.inputValue"
         :placeholder="searchbar.placeholder"
         @confirm="confirm"
       ></mp-searchbar>
     </div>
-
     <div class="swiper-wrap">
       <my-swiper :imgUrls="imgUrls"></my-swiper>
     </div>
-
-    <div class="content-wrap">
-      
+    <div class="grid-wrap">
+      <mp-grid :gridData="gridData"></mp-grid>
     </div>
   </div>
 </template>
@@ -23,15 +22,17 @@
 <script>
 import mpSearchbar from 'mpvue-weui/src/searchbar'
 import mySwiper from '@/components/swiper/index'
+import mpGrid from 'mpvue-weui/src/grid';
 export default {
   components: {
+    mpSearchbar,
     mySwiper,
-    mpSearchbar
+    mpGrid,
   },
 
   data() {
     return {
-      imgUrls:[
+      imgUrls: [
         '/static/images/swiper_01.jpg',
         '/static/images/swiper_02.jpg',
         '/static/images/swiper_03.jpg',
@@ -39,10 +40,18 @@ export default {
         '/static/images/swiper_05.jpg'
       ],
       searchbar: {
+        isFocus: false,
         inputValue: '',
-        confirmType: 'go', //search send next go done
-        placeholder: 'search'
-      }
+        confirmType: 'search', //search send next go done
+        placeholder: '搜索'
+      },
+      gridData: [
+        { src: '/static/images/empty.png', name: '上门取衣', url: '/pages/index/main' },
+        { src: '/static/images/restart.png', name: '智能洗衣', url: '/pages/index/main' },
+        { src: '/static/images/reduction.png', name: '我要领券', url: '/pages/index/main' },
+        { src: '/static/images/recovery.png', name: '购卡充值', url: '/pages/index/main' },
+      ],
+
     }
   },
 
@@ -96,3 +105,23 @@ export default {
   }
 }
 </script>
+<style>
+.index-wrap .searchbar-wrap .weui-search-bar {
+  border: none;
+  background: #fff;
+}
+
+.index-wrap .swiper-wrap {
+  padding: 0 20rpx;
+}
+
+.index-wrap .grid-wrap {
+  padding: 20rpx;
+}
+
+.index-wrap .grid-wrap .weui-grid {
+  width: 25%;
+  padding: 20rpx;
+}
+
+</style>
