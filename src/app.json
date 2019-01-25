@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/index/main",
-    "pages/logs/main",
+    "pages/links/main",
     "pages/samples/buttons/main",
     "pages/samples/slider/main",
     "pages/samples/uploader/main",
@@ -10,8 +10,7 @@
     "pages/samples/picker/main",
     "pages/samples/navbar/main",
     "pages/samples/flex/main",
-    "pages/samples/panel/main",
-    "pages/samples/swiper/main"
+    "pages/samples/panel/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
