@@ -78,13 +78,15 @@ export default {
       });
     },
     deleteImg(e) {
-      Array.prototype.indexOf = function (val) { // eslint-disable-line
+      Array.prototype.indexOf = function (val) {
+        /* eslint-disable */
         for (let i = 0; i < this.length; i++) {
           if (this[i] === val) return i;
         }
         return -1;
       };
-      Array.prototype.remove = function (val) { // eslint-disable-line
+      Array.prototype.remove = function (val) {
+        /* eslint-disable */
         let index = this.indexOf(val);
         if (index > -1) {
           this.splice(index, 1);
