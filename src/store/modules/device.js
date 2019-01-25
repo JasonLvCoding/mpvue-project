@@ -11,9 +11,9 @@ const storeModule = {
     },
   },
   actions: {
-    GetDeviceInfo({ commit }) {
+    GetPosts({ commit }) {
       return new Promise((resolve, reject) => {
-        Device.getDeviceInfo().then(res => {
+        Device.getPosts().then(res => {
           commit('SET_DEVICE_INFO', res)
           resolve(res)
         }).catch(_ => {

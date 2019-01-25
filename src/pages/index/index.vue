@@ -28,11 +28,9 @@ export default {
   },
 
   created() {
-    this.$store.dispatch('GetDeviceInfo').then(res => {
-      debugger
-    }).then(err => {
-      debugger
-    })
+    this.$store.dispatch('GetPosts')
+      .then(res => {})
+      .catch(err => {})
   },
 
   components: {
@@ -51,6 +49,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-</style>
