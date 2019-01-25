@@ -16,17 +16,32 @@
     <div class="grid-wrap">
       <mp-grid :gridData="gridData"></mp-grid>
     </div>
+
+    <div class="content-wrap">
+      <div class="tabs-wrap">
+        <mp-navbar
+          :tabs="tab.tabs"
+          :activeIndex="tab.activeIndex"
+          @tabClick="tabClick">
+        </mp-navbar>
+      </div>
+      <div class="list-wrap">
+
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import mpSearchbar from 'mpvue-weui/src/searchbar'
+import mpNavbar from 'mpvue-weui/src/navbar';
 import mySwiper from '@/components/swiper/index'
 import mpGrid from 'mpvue-weui/src/grid';
 export default {
   components: {
     mpSearchbar,
     mySwiper,
+    mpNavbar,
     mpGrid,
   },
 
@@ -44,6 +59,10 @@ export default {
         inputValue: '',
         confirmType: 'search', //search send next go done
         placeholder: '搜索'
+      },
+      tab: {
+        activeIndex: 0,
+        tabs: ['智能柜', '门店'],
       },
       gridData: [
         { src: '/static/images/empty.png', name: '上门取衣', url: '/pages/index/main' },
@@ -119,9 +138,17 @@ export default {
   padding: 20rpx;
 }
 
+.index-wrap .grid-wrap .weui-grids {
+  border: none;
+}
+
 .index-wrap .grid-wrap .weui-grid {
   width: 25%;
   padding: 20rpx;
+  border: none;
 }
 
+.index-wrap .content-wrap .tabs-wrap .weui-navbar__item {
+  padding: 15rpx 0;
+}
 </style>
