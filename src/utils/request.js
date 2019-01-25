@@ -3,6 +3,7 @@ import Fly from "flyio/dist/npm/wx";
 const $fly = new Fly;
 
 $fly.config.timeout = 5000;
+$fly.config.baseUrl = '/api';
 
 //添加请求拦截器
 $fly.interceptors.request.use((request)=>{
