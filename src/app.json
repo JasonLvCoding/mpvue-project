@@ -1,0 +1,22 @@
+{
+  "pages": [
+    "pages/index/main",
+    "pages/logs/main",
+    "pages/samples/buttons/main",
+    "pages/samples/slider/main",
+    "pages/samples/uploader/main",
+    "pages/samples/switch/main",
+    "pages/samples/grid/main",
+    "pages/samples/picker/main",
+    "pages/samples/navbar/main",
+    "pages/samples/flex/main",
+    "pages/samples/panel/main",
+    "pages/samples/swiper/main"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  }
+}
