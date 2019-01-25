@@ -2,8 +2,7 @@ import Fly from "flyio/dist/npm/wx";
 
 const $fly = new Fly;
 
-$fly.config.timeout = 120000;
-$fly.config.baseURL="https://mpvue.data.com/api"
+$fly.config.timeout = 5000;
 
 //添加请求拦截器
 $fly.interceptors.request.use((request)=>{

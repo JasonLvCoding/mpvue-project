@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App'
-import Mock from './mock'
+import './mock'
 import store from './store'
 import 'mpvue-weui/src/style/weui.css'
 
