@@ -1,5 +1,4 @@
 import Device from '@/api/device'
-import Config from '@/api/config'
 const storeModule = {
   state: {
     deviceInfo: null,
@@ -10,12 +9,6 @@ const storeModule = {
     SET_DEVICE_INFO: (state, data) => {
       state.deviceInfo = data
     },
-    SET_CONFIG_LIST: (state, data) => {
-      state.configList = data;
-    },
-    SET_CURRENT_CONFIG: (state, index) => {
-      state.selectedConfig = index;
-    }
   },
   actions: {
     GetDeviceInfo({ commit }) {
@@ -28,28 +21,6 @@ const storeModule = {
         })
       })
     },
-    SelectConfig({ commit }, index) {
-      commit('SET_CURRENT_CONFIG', index)
-    },
-    GetDeviceConfig({ commit }) {
-      return new Promise((resolve, reject) => {
-        Device.getConfig().then(res => {
-          commit('SET_CONFIG_LIST', res.configList)
-          resolve(res)
-        }).catch(_ => {
-          reject(_)
-        });
-      })
-    },
-    SaveDeviceConfig({ commit }, data) {
-      return new Promise((resolve, reject) => {
-        Device.saveConfig(data).then(res => {
-          resolve(res)
-        }).catch(_ => {
-          reject(_)
-        });
-      })
-    }
   }
 };
 

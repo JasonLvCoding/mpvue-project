@@ -21,17 +21,17 @@ import mpButton from 'mpvue-weui/src/button'
 export default {
   data() {
     return {
+      deviceInfo: {},
       userInfo: {},
       canIUse: wx.canIUse('button.open-type.getUserInfo')
     }
   },
 
   created() {
-    console.log(this.canIUse)
-    wx.getUserInfo({
-      success: res => {
-        this.userInfo = res.userInfo
-      }
+    this.$store.dispatch('GetDeviceInfo').then(res => {
+      debugger
+    }).then(err => {
+      debugger
     })
   },
 
