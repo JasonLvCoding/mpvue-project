@@ -26,7 +26,7 @@
         </mp-navbar>
       </div>
       <div class="list-wrap">
-
+        <my-list :list="listData"></my-list>
       </div>
     </div>
   </div>
@@ -34,15 +34,18 @@
 
 <script>
 import mpSearchbar from 'mpvue-weui/src/searchbar'
-import mpNavbar from 'mpvue-weui/src/navbar';
-import mySwiper from '@/components/swiper/index'
-import mpGrid from 'mpvue-weui/src/grid';
+import mpNavbar from 'mpvue-weui/src/navbar'
+import mpGrid from 'mpvue-weui/src/grid'
+import mySwiper from '@/components/swiper'
+import myList from '@/components/list'
+
 export default {
   components: {
     mpSearchbar,
     mySwiper,
     mpNavbar,
     mpGrid,
+    myList
   },
 
   data() {
@@ -65,12 +68,43 @@ export default {
         tabs: ['智能柜', '门店'],
       },
       gridData: [
-        { src: '/static/images/empty.png', name: '上门取衣', url: '/pages/index/main' },
+        { src: '/static/images/empty.png', name: '上门取衣', url: '/pages/samples/panel/main' },
         { src: '/static/images/restart.png', name: '智能洗衣', url: '/pages/index/main' },
         { src: '/static/images/reduction.png', name: '我要领券', url: '/pages/index/main' },
         { src: '/static/images/recovery.png', name: '购卡充值', url: '/pages/index/main' },
       ],
-
+      listData:[
+        {
+          imgUrl: '/static/images/recovery.png',
+          title: '一段标题',
+          subtitle: '品牌名称',
+          description: '一段描述一段描述一段描述一段描述一段描述'
+        },
+        {
+          imgUrl: '/static/images/recovery.png',
+          title: '一段标题',
+          subtitle: '品牌名称',
+          description: '一段描述一段描述一段描述一段描述一段描述'
+        },
+        {
+          imgUrl: '/static/images/recovery.png',
+          title: '一段标题',
+          subtitle: '品牌名称',
+          description: '一段描述一段描述一段描述一段描述一段描述'
+        },
+        {
+          imgUrl: '/static/images/recovery.png',
+          title: '一段标题',
+          subtitle: '品牌名称',
+          description: '一段描述'
+        },
+        {
+          imgUrl: '/static/images/recovery.png',
+          title: '一段标题',
+          subtitle: '品牌名称',
+          description: '一段描述一段描述一段描述一段描述一段描述一段描述'
+        }
+      ]
     }
   },
 
