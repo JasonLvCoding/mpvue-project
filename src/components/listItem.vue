@@ -5,8 +5,10 @@
         <image class="weui-media-box__thumb" :src="imgUrl" />
       </div>
       <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-        <div class="weui-media-box__title">{{title}}</div>
-        <div class="weui-media-box__subtitle">{{subtitle}}</div>
+        <div class="weui-media-box__title">
+          {{title}}
+          <span class="weui-media-box__subtitle">{{subtitle}}</span>
+        </div>
         <div class="weui-media-box__desc">{{description}}</div>
       </div>
     </div>
@@ -48,11 +50,10 @@ export default {
 <style>
   .weui-media-box__subtitle {
     color:#999;
-    font-size:26rpx;
-    line-height:1.8;
+    font-size:25rpx;
+    line-height:1.5;
     overflow:hidden;
     text-overflow:ellipsis;
-    display:-webkit-box;
     -webkit-box-orient:vertical;
     -webkit-line-clamp:2;
   }

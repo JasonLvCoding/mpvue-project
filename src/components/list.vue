@@ -15,11 +15,7 @@ export default {
   props: {
     list: {
       type: Array,
-      default: () => [{
-        imgUrl: '',
-        title: '一段标题',
-        description: '一段描述'
-      }]
+      default: () => []
     }
   },
   data() {
