@@ -3,7 +3,7 @@ import Fly from "flyio/dist/npm/wx";
 const $fly = new Fly;
 
 $fly.config.timeout = 5000;
-
+$fly.config.baseURL = 'http://192.168.28.232:3000'
 //添加请求拦截器
 $fly.interceptors.request.use((request)=>{
     //给所有请求添加自定义header

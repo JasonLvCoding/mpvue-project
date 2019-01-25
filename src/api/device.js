@@ -6,5 +6,5 @@ export default {
 
 // 获取设备信息
 function getPosts() {
-  return fly.get('http://192.168.28.232:3000/api/posts')
+  return fly.get('/api/posts')
 }
