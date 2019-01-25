@@ -1,9 +1,33 @@
+
+export {
+  formatNumber,
+  formatTime,
+  filterEmoj,
+  isEmpty,
+  debounce,
+  throttle,
+  applyIf,
+  applyExists,
+  stringFormat,
+  getGUID,
+  formatFileSize,
+  getByteLength,
+  formatDate,
+  photoCompress,
+  canvasDataURL,
+  rotateImg,
+  convertBase64UrlToBlob,
+  resetImgOrientation,
+  getOrientation,
+  resetOrientation,
+}
+
 function formatNumber (n) {
   const str = n.toString()
   return str[1] ? str : `0${str}`
 }
 
-export function formatTime (date) {
+function formatTime (date) {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
   const day = date.getDate()
@@ -18,7 +42,7 @@ export function formatTime (date) {
   return `${t1} ${t2}`
 }
 
-export function filterEmoj(jsonData) {
+function filterEmoj (jsonData) {
   for (var key in jsonData) {
     if (typeof jsonData[key] === "string") {
       if (jsonData[key].match(/[^\u4e00-\u9fa5\{\}\[\]\/="'#<>《》【】()（）·●,.!?@\-_，。！？、……a-zA-Z\d]+/g)) {
@@ -29,17 +53,15 @@ export function filterEmoj(jsonData) {
   return jsonData;
 }
 
-
-
-function isEmpty(value) {
+function isEmpty (value) {
   return typeof value === 'undefined' || value == null;
 }
 
-export function debounce(func, wait, immediate) {
+function debounce (func, wait, immediate) {
 
   var timeout, args, context, timestamp, result;
 
-  var later = function() {
+  var later = function () {
     var last = +new Date() - timestamp;
     if (last < wait && last >= 0) {
       timeout = setTimeout(later, wait - last);
@@ -52,7 +74,7 @@ export function debounce(func, wait, immediate) {
     }
   };
 
-  return function() {
+  return function () {
     context = this;
     args = arguments;
     timestamp = +new Date();
@@ -68,7 +90,7 @@ export function debounce(func, wait, immediate) {
   };
 }
 
-export function throttle(func, wait, options) {
+function throttle (func, wait, options) {
   /* options的默认值
    *  表示首次调用返回值方法时，会马上调用func；否则仅会记录当前时刻，当第二次调用的时间间隔超过wait时，才调用func。
    *  options.leading = true;
@@ -80,13 +102,13 @@ export function throttle(func, wait, options) {
   var timeout = null;
   var previous = 0;
   if (!options) options = {};
-  var later = function() {
+  var later = function () {
     previous = options.leading === false ? 0 : +new Date();
     timeout = null;
     result = func.apply(context, args);
     if (!timeout) context = args = null;
   };
-  return function() {
+  return function () {
     var now = +new Date();
     if (!previous && options.leading === false) previous = now;
     // 计算剩余时间
@@ -113,7 +135,7 @@ export function throttle(func, wait, options) {
 };
 
 //if target object didn't  have properties of source, set it
-export function applyIf(target, source) {
+function applyIf (target, source) {
   for (var key in source) {
     if (!target.hasOwnProperty(key)) {
       target[key] = source[key];
@@ -122,7 +144,7 @@ export function applyIf(target, source) {
 }
 
 //if target object  have properties of source, set it
-export function applyExists(target, source) {
+function applyExists (target, source) {
   for (var key in source) {
     if (target.hasOwnProperty(key)) {
       target[key] = source[key];
@@ -130,10 +152,10 @@ export function applyExists(target, source) {
   }
 }
 
-export function stringFormat(string, args) {
+function stringFormat (string, args) {
   var result = string;
   if (arguments.length > 0) {
-    if (arguments.length == 2 && typeof(args) == "object") {
+    if (arguments.length == 2 && typeof (args) == "object") {
       for (var key in args) {
         if (args[key] != undefined) {
           var reg = new RegExp("({" + key + "})", "g");
@@ -152,7 +174,7 @@ export function stringFormat(string, args) {
   return result;
 }
 
-export function getGUID() {
+function getGUID () {
   var guid = '';
   for (var i = 1; i <= 32; i++) {
     var n = Math.floor(Math.random() * 16.0).toString(16);
@@ -163,7 +185,7 @@ export function getGUID() {
   return guid;
 }
 
-export function formatFileSize(size, decimalPoint) {
+function formatFileSize (size, decimalPoint) {
   if (!size || size <= 0) return "0 Bytes";
   let k = 1024,
     dm = decimalPoint || 2,
@@ -173,7 +195,7 @@ export function formatFileSize(size, decimalPoint) {
 }
 
 
-export function getByteLength(text, fontSize = '1.7rem', fontFamily = 'Arial, "Microsoft Yahei"') {
+function getByteLength (text, fontSize = '1.7rem', fontFamily = 'Arial, "Microsoft Yahei"') {
   var span = document.getElementById('_textContent')
   if (span == null) {
     span = document.createElement("span");
@@ -201,7 +223,7 @@ export function getByteLength(text, fontSize = '1.7rem', fontFamily = 'Arial, "M
   return result.width + 12;
 }
 
-export function formatDate(date, separator, ) {
+function formatDate (date, separator, ) {
   var d = new Date(date),
     month = '' + (d.getMonth() + 1),
     day = '' + d.getDate(),
@@ -221,21 +243,21 @@ export function formatDate(date, separator, ) {
        objDiv：一个是容器或者回调函数
        photoCompress()
         */
-export function photoCompress(file, w, callback) {
+function photoCompress (file, w, callback) {
   var fr = new FileReader();
   /*开始读取指定的Blob对象或File对象中的内容. 当读取操作完成时,readyState属性的值会成为DONE,如果设置了onloadend事件处理程序,则调用之.同时,result属性中将包含一个data: URL格式的字符串以表示所读取文件的内容.*/
   fr.readAsDataURL(file);
-  fr.onload = function() {
+  fr.onload = function () {
     var re = this.result;
     canvasDataURL(re, w, callback)
   }
 }
 
 
-function canvasDataURL(path, obj, callback) {
+function canvasDataURL (path, obj, callback) {
   var img = new Image();
   img.src = path;
-  img.onload = function() {
+  img.onload = function () {
     var that = this;
     // 默认按比例压缩
     var w = that.width,
@@ -283,7 +305,7 @@ function canvasDataURL(path, obj, callback) {
 
 
 //对图片旋转处理 added by lzk
-function rotateImg(img, direction, canvas) {
+function rotateImg (img, direction, canvas) {
   //alert(img);
   //最小与最大旋转方向，图片旋转4次后回到原方向  
   var min_step = 0;
@@ -348,7 +370,7 @@ function rotateImg(img, direction, canvas) {
  * @param urlData
  *            用url方式表示的base64图片数据
  */
-export function convertBase64UrlToBlob(urlData) {
+function convertBase64UrlToBlob (urlData) {
   var arr = urlData.split(','),
     mime = arr[0].match(/:(.*?);/)[1],
     bstr = atob(arr[1]),
@@ -367,14 +389,14 @@ export function convertBase64UrlToBlob(urlData) {
  * @param {Dom Object} $fileInput 文件上传输入框
  * @param {Function} callback 旋转完成后的回调函数
  */
-export function resetImgOrientation(fileObj, callback) {
-  getOrientation(fileObj, function(orientation) {
+function resetImgOrientation (fileObj, callback) {
+  getOrientation(fileObj, function (orientation) {
     var reader = new FileReader();
     reader.readAsDataURL(fileObj);
-    reader.onload = function(evt) {
+    reader.onload = function (evt) {
       var base64 = evt.target.result;
       // 将图片旋转到正确的角度
-      resetOrientation(base64, orientation, function(resultBase64) {
+      resetOrientation(base64, orientation, function (resultBase64) {
         callback(resultBase64);
       });
     }
@@ -382,10 +404,10 @@ export function resetImgOrientation(fileObj, callback) {
 }
 
 // 获取图片旋转的角度
-export function getOrientation(file, callback) {
+function getOrientation (file, callback) {
   var reader = new FileReader();
   reader.readAsArrayBuffer(file);
-  reader.onload = function(e) {
+  reader.onload = function (e) {
     var view = new DataView(e.target.result);
     if (view.getUint16(0, false) != 0xFFD8) return callback(-2);
     var length = view.byteLength,
@@ -409,9 +431,9 @@ export function getOrientation(file, callback) {
   };
 }
 // 将图片旋转到正确的角度
-export function resetOrientation(srcBase64, srcOrientation, callback) {
+function resetOrientation (srcBase64, srcOrientation, callback) {
   var img = new Image();
-  img.onload = function() {
+  img.onload = function () {
     var width = img.width,
       height = img.height,
       canvas = document.createElement('canvas'),
@@ -456,9 +478,4 @@ export function resetOrientation(srcBase64, srcOrientation, callback) {
     callback(canvas.toDataURL('image/jpeg'));
   };
   img.src = srcBase64;
-}
-
-export default {
-  formatNumber,
-  formatTime
 }
