@@ -1,8 +1,7 @@
 <template>
   <div class="index-wrap">
-
     <my-refresh :loading="refresh" text="刷新中..."></my-refresh>
-    <div class="searchbar-wrap">
+    <div class="searchbar-wrap" v-if="!refresh">
       <mp-searchbar
         @blur="searchbar.isFocus = false"
         @isFocus="searchbar.isFocus"
@@ -23,8 +22,8 @@
         <mp-navbar :tabs="tab.tabs" :activeIndex="tab.activeIndex" @tabClick="tabClick"></mp-navbar>
       </div>
       <div class="list-wrap">
-        <container-list :list="containerList" v-if="tab.activeIndex == 0"></container-list>
-        <shop-list :list="shopList" v-else></shop-list>
+        <container-list :list="listData.content" v-if="tab.activeIndex == 0"></container-list>
+        <shop-list :list="listData.content" v-else></shop-list>
       </div>
       <my-loadmore :loading="loading"></my-loadmore>
     </div>
@@ -58,7 +57,7 @@ export default {
   },
 
   mounted() {
-    this.getList()
+    this.getBlogList()
   },
 
   data() {
@@ -104,41 +103,63 @@ export default {
           url: '/pages/index/main'
         }
       ],
-      containerList: [],
-      shopList: []
+      listData: {
+        page: 0,
+        totalPages: 10,
+        content: []
+      }
     }
   },
 
   methods: {
-    getList() {
-      this.$store.dispatch('GetBlogs')
+    resetLoading() {
+      this.loading = false
+      this.refresh = false
+    },
+    resetListData(res) {
+      if(this.loading) {
+        this.listData.content = this.listData.content.concat(res.content)
+      }else {
+        this.listData.content = res.content
+      }
+      this.listData.page = res.page || 0
+      this.listData.totalPages = res.totalPages || 0
+    },
+    getBlogList() {
+      this.$store
+        .dispatch('GetBlogs')
         .then(res => {
-          this.loading = false
-          this.refresh = false
-          this.containerList = res.content
-          this.shopList = res.content
+          this.resetListData(res)
+          this.resetLoading()
         })
         .catch(error => {
           this.loading = false
-          this.refresh =  false
+          this.refresh = false
         })
     },
     tabClick(index) {
+      this.listData = {
+        page: 0,
+        totalPages: 10,
+        content: []
+      }
       this.tab.activeIndex = index
+      this.getBlogList()
     }
   },
   // 上拉加载
   onReachBottom: function() {
-    this.getList()    
+    this.getBlogList()
     this.refresh = false
     this.loading = true
+    wx.stopPullDownRefresh()
   },
   // 下拉刷新
   onPullDownRefresh() {
     this.loading = false
     this.refresh = true
     wx.stopPullDownRefresh()
-    this.getList()
+    this.getBlogList()
   }
 }
 </script>
@@ -171,7 +192,7 @@ export default {
 }
 
 .index-wrap .weui-media-box {
-  padding: 20rpx;
+  padding: 15rpx;
 }
 
 .index-wrap .list-item {
@@ -179,6 +200,6 @@ export default {
 }
 
 .index-wrap .weui-media-box__title {
-  font-size: 30rpx;
+  font-size: 28rpx;
 }
 </style>

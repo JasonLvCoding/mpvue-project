@@ -4,6 +4,9 @@
       <div class="weui-loading"></div>
       <div class="weui-loadmore__tips">{{text}}</div>
     </div>
+    <div class="weui-loadmore weui-loadmore_line" v-show="empty">
+      <div class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</div>
+    </div>
   </div>
 </template>
 
@@ -16,6 +19,10 @@ export default {
 
   props: {
     loading: {
+      type: Boolean,
+      default: false
+    },
+    empty: {
       type: Boolean,
       default: false
     },

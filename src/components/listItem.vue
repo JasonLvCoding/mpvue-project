@@ -63,6 +63,18 @@ export default {
     height:135rpx;
     line-height:120rpx;
     text-align:center;
-}
+  }
+
+  .weui-media-box__desc {
+    color:#999;
+    font-size:26rpx;
+    line-height:1.7;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+  }
+
 
 </style>
