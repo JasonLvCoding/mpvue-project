@@ -189,4 +189,16 @@ export default {
 .index-wrap .content-wrap .tabs-wrap .weui-navbar__item {
   padding: 15rpx 0;
 }
+
+.index-wrap .weui-media-box {
+  padding: 20rpx;
+}
+
+.index-wrap .list-item {
+  border-bottom: 1rpx solid #e6e6e6;
+}
+
+.index-wrap .weui-media-box__title {
+  font-size: 30rpx;
+}
 </style>

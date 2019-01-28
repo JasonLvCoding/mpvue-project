@@ -115,7 +115,7 @@ export default {
 
   methods: {
     showMulLinkageTwoPicker() {
-      this.$refs.mpDatePicker.show();
+      this.$refs.mpPicker.show();
     },
     showCityPicker() {
       this.$refs.mpCityPicker.show();
