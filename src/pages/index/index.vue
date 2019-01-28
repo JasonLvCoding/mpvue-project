@@ -1,6 +1,6 @@
 <template>
   <div class="index-wrap">
-    <my-refresh :loading="refresh" text="刷新中..."></my-refresh>
+    <my-refresh :loading="listState == 'refresh'" text="刷新中..."></my-refresh>
     <div class="searchbar-wrap" v-if="!refresh">
       <mp-searchbar
         @blur="searchbar.isFocus = false"
@@ -8,7 +8,7 @@
         :confirmType="searchbar.confirmType"
         v-model="searchbar.inputValue"
         :placeholder="searchbar.placeholder"
-        @confirm="confirm"
+        @confirm="search"
       ></mp-searchbar>
     </div>
     <div class="swiper-wrap">
@@ -25,7 +25,7 @@
         <container-list :list="listData.content" v-if="tab.activeIndex == 0"></container-list>
         <shop-list :list="listData.content" v-else></shop-list>
       </div>
-      <my-loadmore :loading="loading"></my-loadmore>
+      <my-loadmore :loading="listState == 'loading'"></my-loadmore>
     </div>
   </div>
 </template>
@@ -62,8 +62,7 @@ export default {
 
   data() {
     return {
-      loading: false,
-      refresh: false,
+      listState: null,
       imgUrls: [
         '/static/images/swiper_01.jpg',
         '/static/images/swiper_02.jpg',
@@ -112,29 +111,29 @@ export default {
   },
 
   methods: {
-    resetLoading() {
-      this.loading = false
-      this.refresh = false
-    },
     resetListData(res) {
-      if(this.loading) {
-        this.listData.content = this.listData.content.concat(res.content)
-      }else {
+      if(this.listState != 'loading') {
         this.listData.content = res.content
+      }else {
+        this.listData.content = this.listData.content.concat(res.content)
       }
+      this.listState = null
       this.listData.page = res.page || 0
       this.listData.totalPages = res.totalPages || 0
     },
-    getBlogList() {
+    search() {
+      this.listState = 'search'
+      this.getBlogList(this.searchbar.inputValue)
+    },
+    getBlogList(name) {
+      let param = name ? { name } : {}
       this.$store
-        .dispatch('GetBlogs')
+        .dispatch('GetBlogs', param)
         .then(res => {
           this.resetListData(res)
-          this.resetLoading()
         })
-        .catch(error => {
-          this.loading = false
-          this.refresh = false
+        .catch(error => {      
+          this.listState = null
         })
     },
     tabClick(index) {
@@ -150,14 +149,12 @@ export default {
   // 上拉加载
   onReachBottom: function() {
     this.getBlogList()
-    this.refresh = false
-    this.loading = true
+    this.listState = 'loading'
     wx.stopPullDownRefresh()
   },
   // 下拉刷新
   onPullDownRefresh() {
-    this.loading = false
-    this.refresh = true
+    this.listState = 'refresh'
     wx.stopPullDownRefresh()
     this.getBlogList()
   }

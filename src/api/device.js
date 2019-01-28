@@ -10,6 +10,6 @@ function getPosts() {
   return fly.get('/api/users')
 }
 
-function getBlogs() {
-  return fly.get('/api/blogs')
+function getBlogs(param) {
+  return fly.get('/api/blogs', param)
 }

@@ -20,9 +20,9 @@ const storeModule = {
         })
       })
     },
-    GetBlogs({ commit }) {
+    GetBlogs({ commit }, param) {
       return new Promise((resolve, reject) => {
-        Device.getBlogs().then(res => {
+        Device.getBlogs(param).then(res => {
           resolve(res)
         }).catch(_ => {
           reject(_)
