@@ -23,7 +23,7 @@ $fly.interceptors.request.use((request)=>{
 $fly.interceptors.response.use(
     (response) => {
         //只将请求结果的data字段返回
-        return response.data
+        return response.data && response.data.entity
     },
     (err) => {
         //发生网络错误后会走到这里

@@ -14,7 +14,15 @@ const storeModule = {
     GetPosts({ commit }) {
       return new Promise((resolve, reject) => {
         Device.getPosts().then(res => {
-          commit('SET_DEVICE_INFO', res)
+          resolve(res)
+        }).catch(_ => {
+          reject(_)
+        })
+      })
+    },
+    GetBlogs({ commit }) {
+      return new Promise((resolve, reject) => {
+        Device.getBlogs().then(res => {
           resolve(res)
         }).catch(_ => {
           reject(_)

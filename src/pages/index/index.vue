@@ -18,6 +18,10 @@
     <div class="grid-wrap">
       <mp-grid :gridData="gridData"></mp-grid>
     </div>
+    <div>
+      loading: {{loading}}
+      refresh: {{refresh}}
+    </div>
     <div class="content-wrap">
       <div class="tabs-wrap">
         <mp-navbar :tabs="tab.tabs" :activeIndex="tab.activeIndex" @tabClick="tabClick"></mp-navbar>
@@ -56,6 +60,11 @@ export default {
       return false
     }
   },
+
+  mounted() {
+    this.getList()
+  },
+
   data() {
     return {
       loading: false,
@@ -99,103 +108,41 @@ export default {
           url: '/pages/index/main'
         }
       ],
-      containerList: [
-        {
-          imgUrl: '/static/images/recovery.png',
-          title: '①号佳丽',
-          subtitle: '品牌名称',
-          description: '一段描述一段描述一段描述一段描述一段描述'
-        },
-        {
-          imgUrl: '/static/images/recovery.png',
-          title: '②号佳丽',
-          subtitle: '品牌名称',
-          description: '一段描述一段描述一段描述一段描述一段描述'
-        },
-        {
-          imgUrl: '/static/images/recovery.png',
-          title: '③号佳丽',
-          subtitle: '品牌名称',
-          description: '一段描述一段描述一段描述一段描述一段描述'
-        },
-        {
-          imgUrl: '/static/images/recovery.png',
-          title: '④号佳丽',
-          subtitle: '品牌名称',
-          description: '一段描述一段描述一段描述一段描述一段描述'
-        },
-        {
-          imgUrl: '/static/images/recovery.png',
-          title: '⑤号佳丽',
-          subtitle: '品牌名称',
-          description: '一段描述一段描述一段描述一段描述一段描述'
-        },
-        {
-          imgUrl: '/static/images/recovery.png',
-          title: '⑥号佳丽',
-          subtitle: '品牌名称',
-          description: '一段描述一段描述一段描述一段描述一段描述'
-        }
-      ],
-      shopList: [
-        {
-          imgUrl: '/static/images/recovery.png',
-          title: '①号会所',
-          subtitle: '品牌名称',
-          description: '一段描述一段描述一段描述一段描述一段描述'
-        },
-        {
-          imgUrl: '/static/images/recovery.png',
-          title: '②号会所',
-          subtitle: '品牌名称',
-          description: '一段描述一段描述一段描述一段描述一段描述'
-        },
-        {
-          imgUrl: '/static/images/recovery.png',
-          title: '③号会所',
-          subtitle: '品牌名称',
-          description: '一段描述一段描述一段描述一段描述一段描述'
-        },
-        {
-          imgUrl: '/static/images/recovery.png',
-          title: '④号会所',
-          subtitle: '品牌名称',
-          description: '一段描述一段描述一段描述一段描述一段描述'
-        },
-        {
-          imgUrl: '/static/images/recovery.png',
-          title: '⑤号会所',
-          subtitle: '品牌名称',
-          description: '一段描述一段描述一段描述一段描述一段描述'
-        },
-        {
-          imgUrl: '/static/images/recovery.png',
-          title: '⑥号会所',
-          subtitle: '品牌名称',
-          description: '一段描述一段描述一段描述一段描述一段描述'
-        }
-      ]
+      containerList: [],
+      shopList: []
     }
   },
 
   methods: {
+    getList() {
+      this.$store.dispatch('GetBlogs')
+        .then(res => {
+          this.loading = false
+          this.refresh = false
+          this.containerList = res.content
+          this.shopList = res.content
+        })
+        .catch(error => {
+          this.loading = false
+          this.refresh =  false
+        })
+    },
     tabClick(index) {
       this.tab.activeIndex = index
     }
   },
   // 上拉加载
   onReachBottom: function() {
-    //执行上拉执行的功能
-    console.log('上拉加载')
+    this.getList()    
     this.refresh = false
     this.loading = true
   },
-  // 停止下拉刷新
+  // 下拉刷新
   onPullDownRefresh() {
-    console.log('下拉刷新')
     this.loading = false
     this.refresh = true
     wx.stopPullDownRefresh()
+    this.getList()
   }
 }
 </script>
