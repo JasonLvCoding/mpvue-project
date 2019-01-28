@@ -13,6 +13,7 @@
     "pages/samples/panel/main"
   ],
   "window": {
+    "enablePullDownRefresh": true,
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",

@@ -1,5 +1,7 @@
 <template>
   <div class="index-wrap">
+
+    <my-refresh :loading="refresh" text="刷新中..."></my-refresh>
     <div class="searchbar-wrap">
       <mp-searchbar
         @blur="searchbar.isFocus = false"
@@ -16,19 +18,15 @@
     <div class="grid-wrap">
       <mp-grid :gridData="gridData"></mp-grid>
     </div>
-
     <div class="content-wrap">
       <div class="tabs-wrap">
-        <mp-navbar
-          :tabs="tab.tabs"
-          :activeIndex="tab.activeIndex"
-          @tabClick="tabClick">
-        </mp-navbar>
+        <mp-navbar :tabs="tab.tabs" :activeIndex="tab.activeIndex" @tabClick="tabClick"></mp-navbar>
       </div>
       <div class="list-wrap">
         <container-list :list="containerList" v-if="tab.activeIndex == 0"></container-list>
         <shop-list :list="shopList" v-else></shop-list>
       </div>
+      <my-loadmore :loading="loading"></my-loadmore>
     </div>
   </div>
 </template>
@@ -39,6 +37,7 @@ import mpNavbar from 'mpvue-weui/src/navbar'
 import mpGrid from 'mpvue-weui/src/grid'
 import mySwiper from '@/components/swiper'
 import myList from '@/components/list'
+import myLoading from '@/components/loading'
 
 export default {
   components: {
@@ -46,12 +45,21 @@ export default {
     mySwiper,
     mpNavbar,
     mpGrid,
+    myLoadmore: myLoading,
+    myRefresh: myLoading,
     containerList: myList,
-    shopList: myList,
+    shopList: myList
   },
 
+  computed: {
+    empty() {
+      return false
+    }
+  },
   data() {
     return {
+      loading: false,
+      refresh: false,
       imgUrls: [
         '/static/images/swiper_01.jpg',
         '/static/images/swiper_02.jpg',
@@ -67,15 +75,31 @@ export default {
       },
       tab: {
         activeIndex: 0,
-        tabs: ['Tab1', 'Tab2'],
+        tabs: ['Tab1', 'Tab2']
       },
       gridData: [
-        { src: '/static/images/empty.png', name: '上门服务', url: '/pages/samples/panel/main' },
-        { src: '/static/images/restart.png', name: '智能搞事', url: '/pages/index/main' },
-        { src: '/static/images/reduction.png', name: '我要领券', url: '/pages/index/main' },
-        { src: '/static/images/recovery.png', name: '购卡充值', url: '/pages/index/main' },
+        {
+          src: '/static/images/empty.png',
+          name: '上门服务',
+          url: '/pages/samples/panel/main'
+        },
+        {
+          src: '/static/images/restart.png',
+          name: '智能搞事',
+          url: '/pages/index/main'
+        },
+        {
+          src: '/static/images/reduction.png',
+          name: '我要领券',
+          url: '/pages/index/main'
+        },
+        {
+          src: '/static/images/recovery.png',
+          name: '购卡充值',
+          url: '/pages/index/main'
+        }
       ],
-      containerList:[
+      containerList: [
         {
           imgUrl: '/static/images/recovery.png',
           title: '①号佳丽',
@@ -111,9 +135,9 @@ export default {
           title: '⑥号佳丽',
           subtitle: '品牌名称',
           description: '一段描述一段描述一段描述一段描述一段描述'
-        },
+        }
       ],
-      shopList:[
+      shopList: [
         {
           imgUrl: '/static/images/recovery.png',
           title: '①号会所',
@@ -149,17 +173,30 @@ export default {
           title: '⑥号会所',
           subtitle: '品牌名称',
           description: '一段描述一段描述一段描述一段描述一段描述'
-        },
+        }
       ]
     }
   },
 
   methods: {
     tabClick(index) {
-      this.tab.activeIndex = index;
+      this.tab.activeIndex = index
     }
   },
-
+  // 上拉加载
+  onReachBottom: function() {
+    //执行上拉执行的功能
+    console.log('上拉加载')
+    this.refresh = false
+    this.loading = true
+  },
+  // 停止下拉刷新
+  onPullDownRefresh() {
+    console.log('下拉刷新')
+    this.loading = false
+    this.refresh = true
+    wx.stopPullDownRefresh()
+  }
 }
 </script>
 <style>
