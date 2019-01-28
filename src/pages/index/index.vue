@@ -18,10 +18,6 @@
     <div class="grid-wrap">
       <mp-grid :gridData="gridData"></mp-grid>
     </div>
-    <div>
-      loading: {{loading}}
-      refresh: {{refresh}}
-    </div>
     <div class="content-wrap">
       <div class="tabs-wrap">
         <mp-navbar :tabs="tab.tabs" :activeIndex="tab.activeIndex" @tabClick="tabClick"></mp-navbar>
