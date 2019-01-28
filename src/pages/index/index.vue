@@ -1,6 +1,6 @@
 <template>
   <div class="index-wrap">
-    <my-refresh :loading="listState == 'refresh'" text="刷新中..."></my-refresh>
+    <my-refresh :loading="listState == 'refresh'" text="刷新中..." class="top"></my-refresh>
     <div class="searchbar-wrap" v-if="!refresh">
       <mp-searchbar
         @blur="searchbar.isFocus = false"
