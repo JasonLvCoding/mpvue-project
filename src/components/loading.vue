@@ -34,3 +34,12 @@ export default {
   }
 }
 </script>
+<style>
+.weui-loadmore {
+  width:65%;
+  margin:0.5em auto;
+  line-height:1.6em;
+  font-size:28rpx;
+  text-align:center;
+}
+</style>
