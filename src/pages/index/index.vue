@@ -67,7 +67,7 @@ export default {
       },
       tab: {
         activeIndex: 0,
-        tabs: ['云柜', '门店'],
+        tabs: ['Tab1', 'Tab2'],
       },
       gridData: [
         { src: '/static/images/empty.png', name: '上门服务', url: '/pages/samples/panel/main' },
@@ -78,37 +78,37 @@ export default {
       containerList:[
         {
           imgUrl: '/static/images/recovery.png',
-          title: '①号货柜',
+          title: '①号佳丽',
           subtitle: '品牌名称',
           description: '一段描述一段描述一段描述一段描述一段描述'
         },
         {
           imgUrl: '/static/images/recovery.png',
-          title: '②号货柜',
+          title: '②号佳丽',
           subtitle: '品牌名称',
           description: '一段描述一段描述一段描述一段描述一段描述'
         },
         {
           imgUrl: '/static/images/recovery.png',
-          title: '③号货柜',
+          title: '③号佳丽',
           subtitle: '品牌名称',
           description: '一段描述一段描述一段描述一段描述一段描述'
         },
         {
           imgUrl: '/static/images/recovery.png',
-          title: '④号货柜',
+          title: '④号佳丽',
           subtitle: '品牌名称',
           description: '一段描述一段描述一段描述一段描述一段描述'
         },
         {
           imgUrl: '/static/images/recovery.png',
-          title: '⑤号货柜',
+          title: '⑤号佳丽',
           subtitle: '品牌名称',
           description: '一段描述一段描述一段描述一段描述一段描述'
         },
         {
           imgUrl: '/static/images/recovery.png',
-          title: '⑥号货柜',
+          title: '⑥号佳丽',
           subtitle: '品牌名称',
           description: '一段描述一段描述一段描述一段描述一段描述'
         },
@@ -116,37 +116,37 @@ export default {
       shopList:[
         {
           imgUrl: '/static/images/recovery.png',
-          title: '①号店铺',
+          title: '①号会所',
           subtitle: '品牌名称',
           description: '一段描述一段描述一段描述一段描述一段描述'
         },
         {
           imgUrl: '/static/images/recovery.png',
-          title: '②号店铺',
+          title: '②号会所',
           subtitle: '品牌名称',
           description: '一段描述一段描述一段描述一段描述一段描述'
         },
         {
           imgUrl: '/static/images/recovery.png',
-          title: '③号店铺',
+          title: '③号会所',
           subtitle: '品牌名称',
           description: '一段描述一段描述一段描述一段描述一段描述'
         },
         {
           imgUrl: '/static/images/recovery.png',
-          title: '④号店铺',
+          title: '④号会所',
           subtitle: '品牌名称',
           description: '一段描述一段描述一段描述一段描述一段描述'
         },
         {
           imgUrl: '/static/images/recovery.png',
-          title: '⑤号店铺',
+          title: '⑤号会所',
           subtitle: '品牌名称',
           description: '一段描述一段描述一段描述一段描述一段描述'
         },
         {
           imgUrl: '/static/images/recovery.png',
-          title: '⑥号店铺',
+          title: '⑥号会所',
           subtitle: '品牌名称',
           description: '一段描述一段描述一段描述一段描述一段描述'
         },
