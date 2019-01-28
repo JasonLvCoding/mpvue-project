@@ -23,21 +23,28 @@
   "selectedColor": "#1AAD16",
   "backgroundColor": "#ffffff",
   "borderStyle": "white",
-  "list": [{
+  "list": [
+    {
       "pagePath": "pages/index/main",
       "text": "首页",
       "iconPath": "static/images/empty.png",
       "selectedIconPath": "static/images/empty.png"
     },
     {
+      "pagePath": "pages/samples/buttons/main",
+      "text": "Buttons",
+      "iconPath": "static/images/empty.png",
+      "selectedIconPath": "static/images/empty.png"
+    },
+    {
       "pagePath": "pages/samples/grid/main",
-      "text": "鸭鸭",
+      "text": "Grid",
       "iconPath": "static/images/empty.png",
       "selectedIconPath": "static/images/empty.png"
     },
     {
       "pagePath": "pages/samples/picker/main",
-      "text": "我",
+      "text": "Picker",
       "iconPath": "static/images/empty.png",
       "selectedIconPath": "static/images/empty.png"
     }
