@@ -2,7 +2,7 @@ export default {
   
   data() {
     return {
-      $_loadingState: null,
+      loadingState: null,
       $_dataContainer: 'listData',
       $_action: '',
       $_params: '',
@@ -21,7 +21,7 @@ export default {
       this.$_pullUpLoadmore = !!option.pullUpLoadmore
     },
     $_setListData(res) {
-      if(this.$_loadingState != 'loadmore') {
+      if(this.loadingState != 'loadmore') {
         this.$data[this.$_dataContainer] = res
       }else {
         let data = this.$data[this.$_dataContainer] && this.$data[this.$_dataContainer].content || []
@@ -32,12 +32,12 @@ export default {
       this._resetLoadingState()
     },
     $_resetLoadingState() {
-      this.$_loadingState = null
+      this.loadingState = null
       wx.hideNavigationBarLoading()
       wx.stopPullDownRefresh()
     },
     searchListData() {
-      this.$_loadingState = 'search'
+      this.loadingState = 'search'
       this.$_getListData()
     },
     $_getListData() {
@@ -45,10 +45,16 @@ export default {
         .dispatch(this.$_action, this.$data[this.$_params])
         .then(res => {
           this.$_setListData(res)
+          this.$_resetLoadingState()
         })
         .catch(error => {
+          this.$_resetLoadingState()          
           this.handleListError(error)
         })
+    },
+    loadmore() {
+      this.loadingState = 'loadmore'
+      this.$_getListData()
     },
     handleListError() {
     }
@@ -56,10 +62,9 @@ export default {
   },
 
   // 上拉加载
-  onReachBottom: function() {
-    if(!this.$_pullUploadmore) return
-    this.$_loadingState = 'loadmore'
-    this.$_getListData()
+  onReachBottom() {
+    if(!this.$_pullUpLoadmore) return
+    this.loadmore()
   },
   // 下拉刷新
   onPullDownRefresh() {
@@ -68,7 +73,7 @@ export default {
       wx.stopPullDownRefresh()
       return
     }
-    this.$_loadingState = 'refresh'
+    this.loadingState = 'refresh'
     wx.showNavigationBarLoading()
     this.$_getListData()
   }

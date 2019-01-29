@@ -22,7 +22,6 @@
         <container-list :list="listData.content" v-if="tab.activeIndex == 0"></container-list>
         <shop-list :list="listData.content" v-else></shop-list>
       </div>
-      <my-loadmore :loading="listState == 'loading'"></my-loadmore>
     </div>
   </div>
 </template>
@@ -34,7 +33,6 @@ import mpNavbar from 'mpvue-weui/src/navbar'
 import mpGrid from 'mpvue-weui/src/grid'
 import mySwiper from '@/components/swiper'
 import myList from '@/components/list'
-import myLoading from '@/components/loading'
 
 import listPage from '@/mixins/listPage'
 
@@ -47,7 +45,6 @@ export default {
     mySwiper,
     mpNavbar,
     mpGrid,
-    myLoadmore: myLoading,
     containerList: myList,
     shopList: myList
   },
@@ -174,7 +171,12 @@ export default {
 .weui-cell.weui-cell_access.weui-cell_link .weui-cell__bd {
   text-align: right;
 }
-
+.weui-cell_link:hover, .weui-cell_link:visited, .weui-cell_link:active,
+.weui-cell.weui-cell_access.weui-cell_link .weui-cell__bd:hover,
+.weui-cell.weui-cell_access.weui-cell_link .weui-cell__bd:active,
+.weui-cell.weui-cell_access.weui-cell_link .weui-cell__bd:visited {
+  background-color: #fff;
+}
 .index-wrap .weui-media-box__title {
   font-size: 28rpx;
 }

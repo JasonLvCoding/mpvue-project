@@ -12,7 +12,7 @@
     </div>
     <div class="content-wrap">
       <shop-list :list="listData.content"></shop-list>
-      <my-loadmore :loading="listState == 'loading'"></my-loadmore>
+      <my-loadmore :loading="loadingState == 'loadmore'" @loadmore="loadmore" :showLoadBtn="true"></my-loadmore>
     </div>
   </div>
 </template>
@@ -21,7 +21,7 @@
 import { mapGetters } from 'vuex'
 import mpSearchbar from 'mpvue-weui/src/searchbar'
 import myList from '@/components/list'
-import myLoading from '@/components/loading'
+import myLoading from '@/components/loadmore'
 
 import listPage from '@/mixins/listPage'
 
@@ -41,6 +41,7 @@ export default {
 
   data() {
     return {
+      loadingState: null,
       searchbar: {
         isFocus: false,
         inputValue: '',

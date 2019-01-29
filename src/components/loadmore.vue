@@ -4,8 +4,8 @@
       <div class="weui-loading"></div>
       <div class="weui-loadmore__tips">{{text}}</div>
     </div>
-    <div class="weui-loadmore weui-loadmore_line" v-show="empty">
-      <div class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</div>
+    <div class="weui-loadmore weui-loadmore_line" v-show="showLoadBtn && !loading">
+      <div class="weui-loadmore__tips weui-loadmore__tips_in-line" @click="loadmore">加载更多</div>
     </div>
   </div>
 </template>
@@ -22,7 +22,7 @@ export default {
       type: Boolean,
       default: false
     },
-    empty: {
+    showLoadBtn: {
       type: Boolean,
       default: false
     },
@@ -37,16 +37,22 @@ export default {
     }
   },
   methods: {
-
+    loadmore() {
+      this.$emit('loadmore')
+    }
   }
 }
 </script>
 <style>
 .weui-loadmore {
-  width:65%;
-  margin:0.5em auto;
-  line-height:1.6em;
-  font-size:28rpx;
-  text-align:center;
+  width: 65%;
+  margin: 1.5em auto;
+  line-height: 1.6em;
+  font-size: 28rpx;
+  text-align: center;
+  background-color: #eee;
+}
+.weui-loadmore__tips_in-line {
+  background-color: #eee;
 }
 </style>
