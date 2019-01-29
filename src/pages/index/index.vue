@@ -44,7 +44,12 @@ import mySwiper from '@/components/swiper'
 import myList from '@/components/list'
 import myLoading from '@/components/loading'
 
+import listPage from '@/mixins/listPage'
+
 export default {
+
+  mixins: [listPage],
+
   components: {
     mpSearchbar,
     mySwiper,
@@ -114,35 +119,17 @@ export default {
       }
     }
   },
+  
+  mounted() {
+    this.initListPage({
+      action: 'GetBlogs',
+      dataContainer: 'listData',
+      searchParams: 'searchbar'
+    })
+    this.searchListData()
+  },
 
   methods: {
-    resetListData(res) {
-      if(this.listState != 'loading') {
-        this.listData.content = res.content
-      }else {
-        this.listData.content = this.listData.content.concat(res.content)
-      }
-      this.listState = null
-      this.listData.page = res.page || 0
-      this.listData.totalPages = res.totalPages || 0
-      wx.hideNavigationBarLoading()
-      wx.stopPullDownRefresh()
-    },
-    search() {
-      this.listState = 'search'
-      this.getBlogList(this.searchbar.inputValue)
-    },
-    getBlogList(name) {
-      let param = name ? { name } : {}
-      this.$store
-        .dispatch('GetBlogs', param)
-        .then(res => {
-          this.resetListData(res)
-        })
-        .catch(error => {      
-          this.listState = null
-        })
-    },
     tabClick(index) {
       this.listData = {
         page: 0,
@@ -150,21 +137,9 @@ export default {
         content: []
       }
       this.tab.activeIndex = index
-      this.getBlogList()
+      this.searchListData()
     }
   },
-  // 上拉加载
-  onReachBottom: function() {
-    this.getBlogList()
-    this.listState = 'loading'
-    wx.stopPullDownRefresh()
-  },
-  // 下拉刷新
-  onPullDownRefresh() {
-    this.listState = 'refresh'
-    wx.showNavigationBarLoading()
-    this.getBlogList()
-  }
 }
 </script>
 <style>
