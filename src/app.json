@@ -14,8 +14,10 @@
   ],
   "window": {
     "enablePullDownRefresh": true,
+    "backgroundColor": "#eee",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#55CBEC",
+    "backgroundColorBottom": "#eee",
+    "navigationBarBackgroundColor": "#bde9f2",
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "Go Bird"
   },

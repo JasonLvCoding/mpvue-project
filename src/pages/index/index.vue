@@ -2,6 +2,7 @@
   <div class="index-wrap">
     <div class="swiper-wrap">
       <my-swiper :imgUrls="imgUrls"></my-swiper>
+      <div class="shadow"></div>
     </div>
     <div class="grid-wrap">
       <mp-grid :gridData="gridData"></mp-grid>
@@ -14,7 +15,7 @@
         <div class="weui-panel__ft">
           <div class="weui-cell weui-cell_access weui-cell_link">
             <div class="head">大拿推荐</div>
-            <div class="weui-cell__bd">查看更多</div>
+            <div class="weui-cell__bd">查看全部</div>
             <div class="weui-cell__ft weui-cell__ft_in-access"></div>
           </div>
         </div>
@@ -109,14 +110,26 @@ export default {
 }
 
 .index-wrap .swiper-wrap {
+  position: relative;
   padding: 0;
-  box-shadow: #eee
+}
+.index-wrap .swiper-wrap .shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-shadow: 1px 1px 80rpx 40rpx rgba(255, 255, 244, 0.6) inset;
+    top: 0;
+    left: 0;
 }
 
 .index-wrap .grid-wrap {
   margin: 0 20rpx 20rpx 20rpx;
   background-color: #fff;
   border-radius: 0 0 10rpx 10rpx;
+}
+
+.index-wrap .weui-grid_active {
+  background-color: #fff;
 }
 
 .index-wrap .grid-wrap .weui-grids {
@@ -132,6 +145,11 @@ export default {
 .index-wrap .content-wrap {
   margin: 0 20rpx;
   background-color: #fff;
+  padding-bottom: 20rpx;
+}
+
+.index-wrap .content-wrap .tabs-wrap {
+  border-radius: 5rpx 5rpx 0 0;
 }
 
 .index-wrap .content-wrap .tabs-wrap .weui-navbar__item {
