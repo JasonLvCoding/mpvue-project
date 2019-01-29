@@ -18,9 +18,9 @@
     "backgroundColor": "#eee",
     "backgroundTextStyle": "light",
     "backgroundColorBottom": "#eee",
-    "navigationBarBackgroundColor": "#bde9f2",
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "Go Bird"
+    "navigationBarBackgroundColor": "#54cbec",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "Flappy Bird"
   },
   "tabBar": {
   "color": "#999999",
