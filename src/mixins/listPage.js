@@ -5,7 +5,7 @@ export default {
       $_loadingState: null,
       $_dataContainer: 'listData',
       $_action: '',
-      $_params: {},
+      $_params: '',
       $_enablePullDownRefresh: false,
       $_pullUpLoadmore: false
     }
@@ -16,9 +16,9 @@ export default {
       if(!option.action) return console.error('no action to get list data')
       this.$_action = option.action
       this.$_dataContainer = option.dataContainer
-      this.$_params = this.$data[option.searchParams] || null
-      this.$_pullDownRefresh = !!this.$data[option.pullDownRefresh]
-      this.$_pullUpLoadmore = !!this.$data[option.pullUpLoadmore]
+      this.$_params = option.searchParams || null
+      this.$_pullDownRefresh = !!option.pullDownRefresh
+      this.$_pullUpLoadmore = !!option.pullUpLoadmore
     },
     $_setListData(res) {
       if(this.$_loadingState != 'loadmore') {
@@ -42,7 +42,7 @@ export default {
     },
     $_getListData() {
       this.$store
-        .dispatch(this.$_action, this.$_params)
+        .dispatch(this.$_action, this.$data[this.$_params])
         .then(res => {
           this.$_setListData(res)
         })

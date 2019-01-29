@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/main",
+    "pages/shopList/main",
     "pages/links/main",
     "pages/samples/buttons/main",
     "pages/samples/slider/main",

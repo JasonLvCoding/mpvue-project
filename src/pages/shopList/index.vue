@@ -1,23 +1,13 @@
 <template>
   <div class="shop-list-wrap">
-    <div class="searchbar-wrap" v-if="!refresh">
+    <div class="searchbar-wrap">
       <mp-searchbar
         @blur="searchbar.isFocus = false"
         @isFocus="searchbar.isFocus"
         :confirmType="searchbar.confirmType"
         v-model="searchbar.inputValue"
         :placeholder="searchbar.placeholder"
-        @confirm="search"
-      ></mp-searchbar>
-    </div>
-    <div class="searchbar-wrap" v-if="!refresh">
-      <mp-searchbar
-        @blur="searchbar.isFocus = false"
-        @isFocus="searchbar.isFocus"
-        :confirmType="searchbar.confirmType"
-        v-model="searchbar.inputValue"
-        :placeholder="searchbar.placeholder"
-        @confirm="search"
+        @confirm="searchListData"
       ></mp-searchbar>
     </div>
     <div class="content-wrap">
@@ -28,6 +18,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import mpSearchbar from 'mpvue-weui/src/searchbar'
 import myList from '@/components/list'
 import myLoading from '@/components/loading'
@@ -36,7 +27,11 @@ import listPage from '@/mixins/listPage'
 
 export default {
 
-  mixins: [listPage, imgUrls],
+  computed: {
+    ...mapGetters(['imgUrls'])
+  },
+
+  mixins: [listPage],
 
   components: {
     mpSearchbar,
@@ -46,16 +41,11 @@ export default {
 
   data() {
     return {
-      listState: null,
       searchbar: {
         isFocus: false,
         inputValue: '',
         confirmType: 'search', //search send next go done
-        placeholder: '搜索'
-      },
-      tab: {
-        activeIndex: 0,
-        tabs: ['Tab1', 'Tab2']
+        placeholder: '你想要什么'
       },
       listData: {
         page: 0,
@@ -69,21 +59,14 @@ export default {
     this.initListPage({
       action: 'GetBlogs',
       dataContainer: 'listData',
-      searchParams: 'searchbar'
+      searchParams: 'searchbar',
+      pullDownRefresh: true,
+      pullUpLoadmore: true
     })
     this.searchListData()
   },
 
   methods: {
-    tabClick(index) {
-      this.listData = {
-        page: 0,
-        totalPages: 10,
-        content: []
-      }
-      this.tab.activeIndex = index
-      this.searchListData()
-    }
   },
 }
 </script>

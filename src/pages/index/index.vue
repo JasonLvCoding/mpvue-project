@@ -15,7 +15,7 @@
         <div class="weui-panel__ft">
           <div class="weui-cell weui-cell_access weui-cell_link">
             <div class="head">大拿推荐</div>
-            <div class="weui-cell__bd">查看全部</div>
+            <a class="weui-cell__bd" href="/pages/shopList/main">查看全部</a>
             <div class="weui-cell__ft weui-cell__ft_in-access"></div>
           </div>
         </div>
