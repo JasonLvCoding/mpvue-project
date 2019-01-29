@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <div class="weui-loadmore" v-show="loading">
+    <div class="weui-loadmore loading" v-show="loading">
       <div class="weui-loading"></div>
       <div class="weui-loadmore__tips">{{text}}</div>
     </div>
@@ -52,7 +52,13 @@ export default {
   text-align: center;
   background-color: #eee;
 }
+
 .weui-loadmore__tips_in-line {
   background-color: #eee;
+}
+
+.weui-loadmore.loading{
+  margin: 0.5em auto;
+  padding-bottom: 1em;
 }
 </style>
