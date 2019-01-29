@@ -30,20 +30,20 @@
     {
       "pagePath": "pages/index/main",
       "text": "首页",
-      "iconPath": "static/images/empty.png",
-      "selectedIconPath": "static/images/empty.png"
+      "iconPath": "static/images/tabbars/home1.png",
+      "selectedIconPath": "static/images/tabbars/home1.png"
     },
     {
       "pagePath": "pages/samples/buttons/main",
       "text": "Buttons",
-      "iconPath": "static/images/empty.png",
-      "selectedIconPath": "static/images/empty.png"
+      "iconPath": "static/images/tabbars/libv.png",
+      "selectedIconPath": "static/images/tabbars/libv.png"
     },
     {
       "pagePath": "pages/samples/grid/main",
       "text": "Grid",
-      "iconPath": "static/images/empty.png",
-      "selectedIconPath": "static/images/empty.png"
+      "iconPath": "static/images/tabbars/my.png",
+      "selectedIconPath": "static/images/tabbars/my.png"
     },
     {
       "pagePath": "pages/samples/picker/main",

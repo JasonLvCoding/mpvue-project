@@ -4,22 +4,22 @@ const storeModule = {
     deviceInfo: null,
     gridData: [
       {
-        src: '/static/images/empty.png',
+        src: '/static/images/library.png',
         name: '上门服务',
         url: '/pages/samples/panel/main'
       },
       {
-        src: '/static/images/restart.png',
+        src: '/static/images/setting.png',
         name: '智能搞事',
         url: '/pages/index/main'
       },
       {
-        src: '/static/images/reduction.png',
+        src: '/static/images/read.png',
         name: '我要领券',
         url: '/pages/index/main'
       },
       {
-        src: '/static/images/recovery.png',
+        src: '/static/images/saoma.png',
         name: '购卡充值',
         url: '/pages/index/main'
       }

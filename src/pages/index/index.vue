@@ -117,7 +117,7 @@ export default {
     position: absolute;
     width: 100%;
     height: 100%;
-    box-shadow: 1px 1px 80rpx 40rpx rgba(255, 255, 244, 0.6) inset;
+    box-shadow: -10rpx -100rpx 60rpx -90rpx rgba(255, 255, 244, 0.6) inset;
     top: 0;
     left: 0;
 }
@@ -140,6 +140,7 @@ export default {
   width: 25%;
   padding: 20rpx;
   border: none;
+  border-right:1rpx solid #e8e8e8;
 }
 
 .index-wrap .content-wrap {
