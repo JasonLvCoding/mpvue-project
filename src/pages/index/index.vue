@@ -1,15 +1,5 @@
 <template>
   <div class="index-wrap">
-    <div class="searchbar-wrap" v-if="!refresh">
-      <mp-searchbar
-        @blur="searchbar.isFocus = false"
-        @isFocus="searchbar.isFocus"
-        :confirmType="searchbar.confirmType"
-        v-model="searchbar.inputValue"
-        :placeholder="searchbar.placeholder"
-        @confirm="search"
-      ></mp-searchbar>
-    </div>
     <div class="swiper-wrap">
       <my-swiper :imgUrls="imgUrls"></my-swiper>
     </div>
@@ -109,17 +99,24 @@ export default {
 }
 </script>
 <style>
+.index-wrap {
+  background-color: #eee;
+}
+
 .index-wrap .searchbar-wrap .weui-search-bar {
   border: none;
   background: #fff;
 }
 
 .index-wrap .swiper-wrap {
-  padding: 0 20rpx;
+  padding: 0;
+  box-shadow: #eee
 }
 
 .index-wrap .grid-wrap {
-  padding: 20rpx;
+  margin: 0 20rpx 20rpx 20rpx;
+  background-color: #fff;
+  border-radius: 0 0 10rpx 10rpx;
 }
 
 .index-wrap .grid-wrap .weui-grids {
@@ -132,12 +129,17 @@ export default {
   border: none;
 }
 
+.index-wrap .content-wrap {
+  margin: 0 20rpx;
+  background-color: #fff;
+}
+
 .index-wrap .content-wrap .tabs-wrap .weui-navbar__item {
-  padding: 15rpx 0;
+  padding: 20rpx 0;
 }
 
 .index-wrap .weui-media-box {
-  padding: 15rpx;
+  padding: 20rpx;
 }
 
 .index-wrap .weui-panel {

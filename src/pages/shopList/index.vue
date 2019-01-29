@@ -1,5 +1,15 @@
 <template>
-  <div class="index-wrap">
+  <div class="shop-list-wrap">
+    <div class="searchbar-wrap" v-if="!refresh">
+      <mp-searchbar
+        @blur="searchbar.isFocus = false"
+        @isFocus="searchbar.isFocus"
+        :confirmType="searchbar.confirmType"
+        v-model="searchbar.inputValue"
+        :placeholder="searchbar.placeholder"
+        @confirm="search"
+      ></mp-searchbar>
+    </div>
     <div class="searchbar-wrap" v-if="!refresh">
       <mp-searchbar
         @blur="searchbar.isFocus = false"
@@ -78,38 +88,38 @@ export default {
 }
 </script>
 <style>
-.index-wrap .searchbar-wrap .weui-search-bar {
+.shop-list-wrap .searchbar-wrap .weui-search-bar {
   border: none;
   background: #fff;
 }
 
-.index-wrap .swiper-wrap {
+.shop-list-wrap .swiper-wrap {
   padding: 0 20rpx;
 }
 
-.index-wrap .grid-wrap {
+.shop-list-wrap .grid-wrap {
   padding: 20rpx;
 }
 
-.index-wrap .grid-wrap .weui-grids {
+.shop-list-wrap .grid-wrap .weui-grids {
   border: none;
 }
 
-.index-wrap .grid-wrap .weui-grid {
+.shop-list-wrap .grid-wrap .weui-grid {
   width: 25%;
   padding: 20rpx;
   border: none;
 }
 
-.index-wrap .content-wrap .tabs-wrap .weui-navbar__item {
+.shop-list-wrap .content-wrap .tabs-wrap .weui-navbar__item {
   padding: 15rpx 0;
 }
 
-.index-wrap .weui-media-box {
+.shop-list-wrap .weui-media-box {
   padding: 15rpx;
 }
 
-.index-wrap .weui-panel {
+.shop-list-wrap .weui-panel {
   margin: 0;
 }
 
@@ -123,7 +133,7 @@ export default {
   text-align: right;
 }
 
-.index-wrap .weui-media-box__title {
+.shop-list-wrap .weui-media-box__title {
   font-size: 28rpx;
 }
 </style>

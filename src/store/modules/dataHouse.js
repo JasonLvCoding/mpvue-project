@@ -25,8 +25,7 @@ const storeModule = {
       }
     ],
     imgUrls: [
-      '/static/images/swiper_01.jpg',
-      '/static/images/swiper_02.jpg'
+      '/static/images/swiper_01.png'
     ],
   },
   mutations: {

@@ -15,15 +15,15 @@
   "window": {
     "enablePullDownRefresh": true,
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#55CBEC",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "Go Bird"
   },
   "tabBar": {
   "color": "#999999",
   "selectedColor": "#1AAD16",
   "backgroundColor": "#ffffff",
-  "borderStyle": "white",
+  "borderStyle": "black",
   "list": [
     {
       "pagePath": "pages/index/main",

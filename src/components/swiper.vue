@@ -17,21 +17,31 @@ export default {
   props: {
     imgUrls: {
       type: Array,
-      default: () => [
-        '/static/images/add.png',
-        '/static/images/add.png',
-        '/static/images/add.png'
-      ]
-    }
+      default: () => []
+    },
+    indicatorDots: {
+      type: Boolean,
+      default: false
+    },
+    autoplay: {
+      type: Boolean,
+      default: false
+    },
+    interval: {
+      type: Number,
+      default: 500
+    },
+    duration: {
+      type: Number,
+      default: 900
+    },
+    circular: {
+      type: Boolean,
+      default: true
+    },
   },
   data() {
-    return {
-      indicatorDots: true,
-      autoplay: true,
-      interval: 5000,
-      duration: 900,
-      circular: true
-    }
+    return {}
   }
 }
 </script>
