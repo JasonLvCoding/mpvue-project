@@ -28,8 +28,8 @@
             <div class="weui-cell__ft weui-cell__ft_in-access"></div>
           </div>
         </div>
-        <container-list :list="listData.content" v-if="tab.activeIndex == 0"></container-list>
-        <shop-list :list="listData.content" v-else></shop-list>
+        <container-list :list="testData" v-if="tab.activeIndex == 0"></container-list>
+        <shop-list :list="testData" v-else></shop-list>
       </div>
       <my-loadmore :loading="listState == 'loading'"></my-loadmore>
     </div>
@@ -62,7 +62,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['gridData', 'imgUrls'])
+    ...mapGetters(['gridData', 'imgUrls', 'testData'])
   },
 
   data() {

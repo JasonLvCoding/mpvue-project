@@ -28,6 +28,15 @@ const storeModule = {
       '/static/images/swiper_01.jpg',
       '/static/images/swiper_02.jpg'
     ],
+    testData: [{
+        // 属性 id 是一个自增数，起始值为 1，每次增 1
+        'id|+1': 1,
+        'name': '红红',
+        'imgUrl': '/static/images/swiper_02.jpg',
+        'title': 'sdfaasf',
+        'subtitle': 'sfasdf',
+        'description': '一段描述打算发顺丰手动阀分'
+      }]
   },
   mutations: {
     SET_DEVICE_INFO: (state, data) => {
