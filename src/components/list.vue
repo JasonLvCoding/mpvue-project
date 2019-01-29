@@ -1,7 +1,7 @@
 <template>
   <div class="weui-panel weui-panel_access">
     <div class="weui-panel__bd">
-      <list-item v-for="item in list" :key="item" :imgUrl="item.imgUrl" :title="item.title" :description="item.description" :subtitle="item.subtitle"></list-item>
+      <list-item v-for="item in list" :key="item" :imgUrl="item[urlFieldName]" :title="item[titleFieldName]" :description="item[descFieldName]" :subtitle="item[subtitleFieldName]"></list-item>
     </div>
   </div>
 </template>
@@ -16,6 +16,22 @@ export default {
     list: {
       type: Array,
       default: () => []
+    },
+    urlFieldName: {
+      type: String,
+      default: () => 'imgUrl'
+    },
+    titleFieldName: {
+      type: String,
+      default: () => 'title'
+    },
+    subtitleFieldName: {
+      type: String,
+      default: () => 'subtitle'
+    },
+    descFieldName: {
+      type: String,
+      default: () => 'description'
     }
   },
   data() {

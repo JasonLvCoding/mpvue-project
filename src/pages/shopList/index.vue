@@ -10,38 +10,15 @@
         @confirm="search"
       ></mp-searchbar>
     </div>
-    <div class="swiper-wrap">
-      <my-swiper :imgUrls="imgUrls"></my-swiper>
-    </div>
-    <div class="grid-wrap">
-      <mp-grid :gridData="gridData"></mp-grid>
-    </div>
     <div class="content-wrap">
-      <div class="tabs-wrap">
-        <mp-navbar :tabs="tab.tabs" :activeIndex="tab.activeIndex" @tabClick="tabClick"></mp-navbar>
-      </div>
-      <div class="list-wrap">
-        <div class="weui-panel__ft">
-          <div class="weui-cell weui-cell_access weui-cell_link">
-            <div class="head">大拿推荐</div>
-            <div class="weui-cell__bd">查看更多</div>
-            <div class="weui-cell__ft weui-cell__ft_in-access"></div>
-          </div>
-        </div>
-        <container-list :list="listData.content" v-if="tab.activeIndex == 0"></container-list>
-        <shop-list :list="listData.content" v-else></shop-list>
-      </div>
+      <shop-list :list="listData.content"></shop-list>
       <my-loadmore :loading="listState == 'loading'"></my-loadmore>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import mpSearchbar from 'mpvue-weui/src/searchbar'
-import mpNavbar from 'mpvue-weui/src/navbar'
-import mpGrid from 'mpvue-weui/src/grid'
-import mySwiper from '@/components/swiper'
 import myList from '@/components/list'
 import myLoading from '@/components/loading'
 
@@ -49,20 +26,12 @@ import listPage from '@/mixins/listPage'
 
 export default {
 
-  mixins: [listPage],
+  mixins: [listPage, imgUrls],
 
   components: {
     mpSearchbar,
-    mySwiper,
-    mpNavbar,
-    mpGrid,
     myLoadmore: myLoading,
-    containerList: myList,
     shopList: myList
-  },
-
-  computed: {
-    ...mapGetters(['gridData', 'imgUrls'])
   },
 
   data() {
