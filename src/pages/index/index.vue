@@ -1,6 +1,5 @@
 <template>
   <div class="index-wrap">
-    <my-refresh :loading="listState == 'refresh'" text="刷新中..." class="top"></my-refresh>
     <div class="searchbar-wrap" v-if="!refresh">
       <mp-searchbar
         @blur="searchbar.isFocus = false"
@@ -22,6 +21,13 @@
         <mp-navbar :tabs="tab.tabs" :activeIndex="tab.activeIndex" @tabClick="tabClick"></mp-navbar>
       </div>
       <div class="list-wrap">
+        <div class="weui-panel__ft">
+          <div class="weui-cell weui-cell_access weui-cell_link">
+            <div class="head">推荐店铺</div>
+            <div class="weui-cell__bd">查看更多</div>
+            <div class="weui-cell__ft weui-cell__ft_in-access"></div>
+          </div>
+        </div>
         <container-list :list="listData.content" v-if="tab.activeIndex == 0"></container-list>
         <shop-list :list="listData.content" v-else></shop-list>
       </div>
@@ -45,7 +51,6 @@ export default {
     mpNavbar,
     mpGrid,
     myLoadmore: myLoading,
-    myRefresh: myLoading,
     containerList: myList,
     shopList: myList
   },
@@ -120,6 +125,8 @@ export default {
       this.listState = null
       this.listData.page = res.page || 0
       this.listData.totalPages = res.totalPages || 0
+      wx.hideNavigationBarLoading()
+      wx.stopPullDownRefresh()
     },
     search() {
       this.listState = 'search'
@@ -155,7 +162,7 @@ export default {
   // 下拉刷新
   onPullDownRefresh() {
     this.listState = 'refresh'
-    wx.stopPullDownRefresh()
+    wx.showNavigationBarLoading()
     this.getBlogList()
   }
 }
@@ -192,8 +199,18 @@ export default {
   padding: 15rpx;
 }
 
-.index-wrap .list-item {
-  border-bottom: 1rpx solid #e6e6e6;
+.index-wrap .weui-panel {
+  margin: 0;
+}
+
+.weui-cell.weui-cell_access.weui-cell_link .head {
+  font-size: 30rpx;
+  line-height: 1;
+  color: #282828;
+}
+
+.weui-cell.weui-cell_access.weui-cell_link .weui-cell__bd {
+  text-align: right;
 }
 
 .index-wrap .weui-media-box__title {
