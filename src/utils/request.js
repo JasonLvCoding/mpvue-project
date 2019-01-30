@@ -1,4 +1,4 @@
-import Fly from "flyio/dist/npm/wx";
+import Fly from "flyio/dist/npm/wx"
 import Vue from 'vue'
 
 const $fly = new Fly;
@@ -9,7 +9,8 @@ $fly.config.baseURL = 'http://192.168.28.232:3000'
 //添加请求拦截器
 $fly.interceptors.request.use((request) => {
   //给所有请求添加自定义header
-  request.headers["X-Tag"] = "flyio";
+  request.headers["X-Tag"] = "flyio"
+  request.withCredentials = true
   request.timestamp = new Date().getTime()
   requestQueue.push(request.timestamp)
   handleRequestQueue(requestQueue)
@@ -43,23 +44,39 @@ export function handleRequestQueue(requestQueue) {
 }
 
 export function handleErrorMsg (error) {
-
-  if (error.status == 0) {
+/** 
+  if (error.status === 0) {
     //网络错误
+    wx.showToast({
+      title: '网络错误',
+      icon: 'none',
+      duration: 2000
+    })
     return Promise.reject(error)
   }
 
   if (error.status === 1) {
     //超时请求
+    wx.showToast({
+      title: '请求超时，请稍后重试',
+      icon: 'none',
+      duration: 2000
+    })
     return Promise.reject(error)
   }
+**/
 
-  if (401 === error.response.status) {
+  if (401 === error.status) {
+    wx.showToast({
+      title: '请重新登录',
+      icon: 'none',
+      duration: 2000
+    })
     Vue.config.store.dispatch('RedirectToLogin')
     return Promise.reject(error)
   }
 
-  if (error.response.status >= 400 && error.response.status <= 500) {
+  if (error.status >= 400 && error.status <= 500) {
     // 如果是表单提交错误，就不进行全局消息提示，在表单行内提示
     if (error.response.config && error.response.config.handle === true) {
       return Promise.reject(error)
