@@ -20,13 +20,13 @@ $fly.interceptors.request.use((request) => {
 $fly.interceptors.response.use(
   (response) => {
     requestQueue.splice(requestQueue.indexOf(response.request.timestamp), 1)
-    if (requestQueue.length == 0) Vue.prototype.$store.commit('SET_LOADING_STATE', false)
+    Vue.prototype.$store.dispatch('setLoadingState', requestQueue.length == 0)
     //只将请求结果的data字段返回
     return response.data && response.data.entity
   },
   (error) => {
     requestQueue.splice(requestQueue.indexOf(error.request.timestamp), 1)
-    if (requestQueue.length == 0) Vue.prototype.$store.commit('SET_LOADING_STATE', false)
+    Vue.prototype.$store.dispatch('setLoadingState', requestQueue.length == 0)
     return handleErrorMsg(error)
   }
 )
@@ -34,13 +34,13 @@ $fly.interceptors.response.use(
 
 export function handleErrorMsg (error) {
 
-  if (error.code === 'ECONNABORTED') {
-    //超时请求
+  if (error.status == 0) {
+    //网络错误
     return Promise.reject(error)
   }
 
-  if (error.message == 'Network Error') {
-    //网络错误
+  if (error.status === 1) {
+    //超时请求
     return Promise.reject(error)
   }
 

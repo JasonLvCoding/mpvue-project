@@ -1,12 +1,17 @@
 <script>
-export default {
-  created () {
-    // 调用API从本地缓存中获取数据
-    const logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+import { mapGetters } from 'vuex'
 
-    console.log('app created and cache logs by setStorageSync')
+export default {
+  name: 'App',
+
+  computed: {
+    ...mapGetters(['loadingState'])
+  },
+
+  watch: {
+    loadingState(newValue) {
+    }
   }
+
 }
 </script>
