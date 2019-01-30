@@ -35,7 +35,7 @@
       "selectedIconPath": "static/images/tabbars/home1.png"
     },
     {
-      "pagePath": "pages/samples/buttons/main",
+      "pagePath": "pages/shopList/main",
       "text": "Libv",
       "iconPath": "static/images/tabbars/libv.png",
       "selectedIconPath": "static/images/tabbars/libv.png"
