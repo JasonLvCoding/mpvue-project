@@ -41,15 +41,15 @@ export default {
         toastType: 'success' //success,warn,error
       },
       gridData: [
-        { src: '/static/images/date.png', name: 'Button', url: '/pages/index/main' },
-        { src: '/static/images/date.png', name: 'Cell', url: '/pages/index/main' },
-        { src: '/static/images/date.png', name: 'Button', url: '/pages/index/main' },
-        { src: '/static/images/date.png', name: 'Cell', url: '/pages/index/main' },
-        { src: '/static/images/date.png', name: 'Button', url: '/pages/index/main' },
-        { src: '/static/images/date.png', name: 'Cell', url: '/pages/index/main' },
-        { src: '/static/images/date.png', name: 'Button', url: '/pages/index/main' },
-        { src: '/static/images/date.png', name: 'Cell', url: '/pages/index/main' },
-        { src: '/static/images/date.png', name: 'Button', url: '/pages/index/main' }
+        { src: '/static/images/setting.png', name: 'Button', url: '/pages/index/main' },
+        { src: '/static/images/setting.png', name: 'Cell', url: '/pages/index/main' },
+        { src: '/static/images/setting.png', name: 'Button', url: '/pages/index/main' },
+        { src: '/static/images/setting.png', name: 'Cell', url: '/pages/index/main' },
+        { src: '/static/images/setting.png', name: 'Button', url: '/pages/index/main' },
+        { src: '/static/images/setting.png', name: 'Cell', url: '/pages/index/main' },
+        { src: '/static/images/setting.png', name: 'Button', url: '/pages/index/main' },
+        { src: '/static/images/setting.png', name: 'Cell', url: '/pages/index/main' },
+        { src: '/static/images/setting.png', name: 'Button', url: '/pages/index/main' }
       ],
       rateValue: 4.5,
       rateScoreText: '给个评价',
