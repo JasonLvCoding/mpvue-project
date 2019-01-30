@@ -33,7 +33,6 @@ export default {
     },
     $_resetLoadingState() {
       this.loadingState = null
-      wx.hideNavigationBarLoading()
       wx.stopPullDownRefresh()
     },
     searchListData() {
@@ -69,12 +68,10 @@ export default {
   // 下拉刷新
   onPullDownRefresh() {
     if(!this.$_pullDownRefresh) {
-      wx.hideNavigationBarLoading()
       wx.stopPullDownRefresh()
       return
     }
     this.loadingState = 'refresh'
-    wx.showNavigationBarLoading()
     this.$_getListData()
   }
 

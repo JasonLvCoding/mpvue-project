@@ -12,6 +12,7 @@ $fly.interceptors.request.use((request) => {
   request.headers["X-Tag"] = "flyio";
   request.timestamp = new Date().getTime()
   requestQueue.push(request.timestamp)
+  handleRequestQueue(requestQueue)
 
   return request;
 })
@@ -20,17 +21,26 @@ $fly.interceptors.request.use((request) => {
 $fly.interceptors.response.use(
   (response) => {
     requestQueue.splice(requestQueue.indexOf(response.request.timestamp), 1)
-    Vue.prototype.$store.dispatch('setLoadingState', requestQueue.length == 0)
+    handleRequestQueue(requestQueue)
     //只将请求结果的data字段返回
     return response.data && response.data.entity
   },
   (error) => {
     requestQueue.splice(requestQueue.indexOf(error.request.timestamp), 1)
-    Vue.prototype.$store.dispatch('setLoadingState', requestQueue.length == 0)
+    handleRequestQueue(requestQueue)
     return handleErrorMsg(error)
   }
 )
 
+export function handleRequestQueue(requestQueue) {
+  let loading = requestQueue.length > 0
+  Vue.prototype.$store.dispatch('setLoadingState', loading)
+  if(loading) {
+    wx.showNavigationBarLoading()
+  } else {
+    wx.hideNavigationBarLoading()
+  }
+}
 
 export function handleErrorMsg (error) {
 
