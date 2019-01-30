@@ -154,30 +154,4 @@ export default {
   padding: 20rpx 0;
 }
 
-.index-wrap .weui-media-box {
-  padding: 20rpx;
-}
-
-.index-wrap .weui-panel {
-  margin: 0;
-}
-
-.weui-cell.weui-cell_access.weui-cell_link .head {
-  font-size: 30rpx;
-  line-height: 1;
-  color: #282828;
-}
-
-.weui-cell.weui-cell_access.weui-cell_link .weui-cell__bd {
-  text-align: right;
-}
-.weui-cell_link:hover, .weui-cell_link:visited, .weui-cell_link:active,
-.weui-cell.weui-cell_access.weui-cell_link .weui-cell__bd:hover,
-.weui-cell.weui-cell_access.weui-cell_link .weui-cell__bd:active,
-.weui-cell.weui-cell_access.weui-cell_link .weui-cell__bd:visited {
-  background-color: #fff;
-}
-.index-wrap .weui-media-box__title {
-  font-size: 28rpx;
-}
 </style>
