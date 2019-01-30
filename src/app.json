@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/main",
     "pages/shopList/main",
+    "pages/profile/main",
     "pages/links/main",
     "pages/samples/buttons/main",
     "pages/samples/slider/main",
@@ -30,19 +31,19 @@
   "list": [
     {
       "pagePath": "pages/index/main",
-      "text": "Index",
+      "text": "首页",
       "iconPath": "static/images/tabbars/home1.png",
       "selectedIconPath": "static/images/tabbars/home1.png"
     },
     {
       "pagePath": "pages/shopList/main",
-      "text": "Libv",
+      "text": "数据",
       "iconPath": "static/images/tabbars/libv.png",
       "selectedIconPath": "static/images/tabbars/libv.png"
     },
     {
-      "pagePath": "pages/samples/grid/main",
-      "text": "My",
+      "pagePath": "pages/profile/main",
+      "text": "我",
       "iconPath": "static/images/tabbars/my.png",
       "selectedIconPath": "static/images/tabbars/my.png"
     }
