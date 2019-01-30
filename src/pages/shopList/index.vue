@@ -45,8 +45,9 @@ export default {
       searchbar: {
         isFocus: false,
         inputValue: '',
+        placeholder: '搜索',
         confirmType: 'search', //search send next go done
-        placeholder: '你想要什么'
+        placeholder: '搜索'
       },
       listData: {
         page: 0,
