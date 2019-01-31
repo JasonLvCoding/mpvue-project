@@ -1,27 +1,30 @@
 import Auth from '@/api/auth'
 const storeModule = {
   state: {
-    appid: '',
-    secret: '',
-    js_code: ''
+    appInfo: {
+      appid: '',
+      secret: '',
+      js_code: ''
+    }
   },
   mutations: {
     SET_JS_CODE: (state, data) => {
-      state.js_code = data
+      state.appInfo.js_code = data
     },
   },
   actions: {
+
     Login ({ commit }, param) {
       return new Promise((resolve, reject) => {
         Auth.login(param).then(res => {
           resolve(res)
-        }).catch(_ => {
-          reject(_)
+        }).catch(err => {
+          reject(err)
         })
       })
     },
 
-    wxLogin ({commit}) {
+    WxLogin ({ commit }) {
       return new Promise((resolve, reject) => {
         wx.login({
           success (res) {
@@ -36,6 +39,25 @@ const storeModule = {
       })
     },
 
+    GetAppInfo () {
+      return new Promise((resolve, reject) => {
+        Auth.getAppInfo().then(res => {
+          resolve(res)
+        }).catch(err => {
+          reject(err)
+        })
+      })
+    },
+
+    GetOpenId ({ commit }, param) {
+      return new Promise((resolve, reject) => {
+        Auth.getOpenId(param).then(res => {
+          resolve(res)
+        }).catch(err => {
+          reject(err)
+        })
+      })
+    }
 
   }
 };

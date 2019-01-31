@@ -20,6 +20,15 @@ export {
   resetImgOrientation,
   getOrientation,
   resetOrientation,
+  errorToast,
+}
+
+function errorToast (err) {
+  wx.showToast({
+    title: err.message || err || '',
+    icon: 'none',
+    duration: 2000
+  })
 }
 
 function formatNumber (n) {
