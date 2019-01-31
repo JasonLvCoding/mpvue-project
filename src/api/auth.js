@@ -5,6 +5,6 @@ export default {
 }
 
 // 获取设备信息
-function login(param) {
+function login (param) {
   return fly.post('/api/auth', param)
 }

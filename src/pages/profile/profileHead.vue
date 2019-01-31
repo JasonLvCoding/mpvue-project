@@ -42,14 +42,20 @@
         default: ''
       }
     },
+
+    mounted() {
+    },
+
     data() {
       return {
         wxPhone: ''
       }
     },
     methods: {
-      getPhoneNumber(data) {
-        debugger
+      getPhoneNumber(e) {
+        console.log(e.detail.errMsg)
+        console.log(e.detail.iv)
+        console.log(e.detail.encryptedData)
       }
     },
   }
