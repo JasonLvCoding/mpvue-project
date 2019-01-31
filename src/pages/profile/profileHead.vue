@@ -1,7 +1,7 @@
 <template>
   <div class="weui-panel weui-panel_access">
     <div class="weui-panel__bd">
-      <div class="weui-media-box weui-media-box_appmsg">
+      <navigator :url="url" class="weui-media-box weui-media-box_appmsg">
         <div class="weui-media-box__hd weui-media-box__hd_in-appmsg weui-media-box__thumb">
           <div class="avatar-box"></div>
           <open-data type="userAvatarUrl"></open-data>
@@ -11,12 +11,11 @@
             <open-data type="userGender" lang="zh_CN"></open-data>&nbsp;
             <open-data type="userNickName"></open-data>
           </div>
-          <div class="weui-media-box__desc">
-            手机号：{{phone || wxPhone}}
-            <mp-button v-if="!phone && !wxPhone" open-type="getPhoneNumber" @getPhoneNumber="getPhoneNumber" :plain="true" type="primary" size="small" buttonClass="mb15">绑定手机</mp-button>
+          <div class="weui-media-box__desc" v-if="phone">
+            手机号：{{phone}}
           </div>
         </div>
-      </div>
+      </navigator>
     </div>
   </div>
 </template>
@@ -29,6 +28,10 @@
       mpButton
     },
     props: {
+      url: {
+        type: String,
+        default: ''
+      },
       avatar: {
         type: String,
         default: ''
@@ -47,16 +50,10 @@
     },
 
     data() {
-      return {
-        wxPhone: ''
-      }
+      return {}
     },
     methods: {
-      getPhoneNumber(e) {
-        console.log(e.detail.errMsg)
-        console.log(e.detail.iv)
-        console.log(e.detail.encryptedData)
-      }
+      
     },
   }
 </script>

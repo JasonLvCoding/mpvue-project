@@ -100,9 +100,7 @@ export default {
     },
     getOpenId(param) {
       this.$store.dispatch('GetOpenId', param)
-      .then(res => {
-        errorToast('success')
-      })
+      .then(res => {})
       .catch(err => {
         errorToast(err)
       })

@@ -1,7 +1,7 @@
 <template>
   <div class="profile">
     <header class="header">
-      <profile-head :avatar="userInfo.avatar" :name="userInfo.name" :phone="userInfo.phone"></profile-head>
+      <profile-head :url="loginUrl" :avatar="userInfo.avatar" :name="userInfo.name" :phone="userInfo.phone"></profile-head>
     </header>
     <section class="content-wrap">
       <link-field
@@ -35,10 +35,11 @@ export default {
 
   data() {
     return {
+      loginUrl: '/pages/samples/buttons/main',
       userInfo: {
         avatar: '',
         phone: '',
-        name: ''
+        name: '',
       },
       formList: [{
         icon: "/static/images/read.png",
