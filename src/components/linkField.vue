@@ -1,5 +1,5 @@
 <template>
-  <navigator url="" class="weui-cell link-field">
+  <navigator :url="url" :open-type="type" class="weui-cell link-field">
     <div class="weui-cell__hd" v-if="icon">
       <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" />
     </div>
@@ -34,6 +34,16 @@ export default {
     withArrow: {
       type: Boolean,
       default: true
+    },
+    isTabbar: {
+      type: Boolean,
+      default: false
+    }
+  },
+
+  computed: {
+    type() {
+      return this.isTabbar ? 'switchTab' : 'navigate'
     }
   }
 

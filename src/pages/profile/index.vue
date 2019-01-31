@@ -1,6 +1,8 @@
 <template>
   <div class="profile-wrap">
-    <header class="header"></header>
+    <header class="header">
+      <profile-head :avatar="userInfo.avatar" :name="userInfo.name" :phone="userInfo.phone"></profile-head>
+    </header>
     <section class="content-wrap">
       <link-field
         v-for="item in formList"
@@ -17,6 +19,7 @@
 import { mapGetters } from 'vuex'
 import myLoadmore from '@/components/loadmore'
 import linkField from '@/components/linkField'
+import profileHead from './profileHead'
 
 export default {
   computed: {
@@ -24,15 +27,21 @@ export default {
   },
 
   components: {
+    profileHead,
     myLoadmore,
     linkField
   },
 
   data() {
     return {
+      userInfo: {
+        avatar: '/static/images/water.png',
+        phone: '17736207172',
+        name: 'Jason Zhang'
+      },
       formList: [{
         icon: "/static/images/read.png",
-        url: '/pages/shopList/main',
+        url: '/pages/samples/uploader/main',
         title: '我的东西',
         content: '这可是我的东西',
       }]

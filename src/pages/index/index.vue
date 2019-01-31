@@ -13,7 +13,7 @@
       </div>
       <div class="list-wrap">
         <div class="weui-panel__ft">
-          <link-field url="/pages/shopList/main" title="大拿推荐" content="查看全部"></link-field>
+          <link-field url="/pages/shopList/main" title="大拿推荐" content="查看全部" :isTabbar="true"></link-field>
         </div>
         <container-list :list="listData.content" v-if="tab.activeIndex == 0"></container-list>
         <shop-list :list="listData.content" v-else></shop-list>
@@ -23,9 +23,7 @@
 </template>
 
 <script>
-  import {
-    mapGetters
-  } from 'vuex'
+  import { mapGetters } from 'vuex'
   import mpSearchbar from 'mpvue-weui/src/searchbar'
   import linkField from '@/components/linkField'
   import mpNavbar from 'mpvue-weui/src/navbar'
