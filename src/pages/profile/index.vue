@@ -1,124 +1,53 @@
 <template>
-  <div class="shop-list-wrap">
-    <div class="searchbar-wrap">
-      <mp-searchbar
-        @blur="searchbar.isFocus = false"
-        @isFocus="searchbar.isFocus"
-        :confirmType="searchbar.confirmType"
-        v-model="searchbar.inputValue"
-        :placeholder="searchbar.placeholder"
-        @confirm="searchListData"
-      ></mp-searchbar>
-    </div>
-    <div class="content-wrap">
-      <shop-list :list="listData.content"></shop-list>
-      <my-loadmore :loading="loadingState == 'loadmore'" @loadmore="loadmore" :showLoadBtn="true"></my-loadmore>
-    </div>
+  <div class="profile-wrap">
+    <header class="header"></header>
+    <section class="content-wrap">
+      <link-field
+        v-for="item in formList"
+        :key="item.url"
+        :url="item.url"
+        :title="item.title"
+        :content="item.content"
+      ></link-field>
+    </section>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import mpSearchbar from 'mpvue-weui/src/searchbar'
-import myList from '@/components/list'
-import myLoading from '@/components/loadmore'
-
-import listPage from '@/mixins/listPage'
+import myLoadmore from '@/components/loadmore'
+import linkField from '@/components/linkField'
 
 export default {
-
   computed: {
     ...mapGetters(['imgUrls'])
   },
 
-  mixins: [listPage],
-
   components: {
-    mpSearchbar,
-    myLoadmore: myLoading,
-    shopList: myList
+    myLoadmore,
+    linkField
   },
 
   data() {
     return {
-      loadingState: null,
-      searchbar: {
-        isFocus: false,
-        inputValue: '',
-        placeholder: '搜索',
-        confirmType: 'search', //search send next go done
-        placeholder: '搜索'
-      },
-      listData: {
-        page: 0,
-        totalPages: 10,
-        content: []
-      }
+      formList: [{
+        icon: "/static/images/read.png",
+        url: '/pages/shopList/main',
+        title: '我的东西',
+        content: '这可是我的东西',
+      }]
     }
   },
-  
+
   mounted() {
-    this.initListPage({
-      action: 'GetBlogs',
-      dataContainer: 'listData',
-      searchParams: 'searchbar',
-      pullDownRefresh: true,
-      pullUpLoadmore: true
-    })
-    this.searchListData()
   },
 
-  methods: {
-  },
+  methods: {}
 }
 </script>
 <style>
-.shop-list-wrap .searchbar-wrap .weui-search-bar {
-  border: none;
-  background: #fff;
-}
-
-.shop-list-wrap .swiper-wrap {
-  padding: 0 20rpx;
-}
-
-.shop-list-wrap .grid-wrap {
-  padding: 20rpx;
-}
-
-.shop-list-wrap .grid-wrap .weui-grids {
-  border: none;
-}
-
-.shop-list-wrap .grid-wrap .weui-grid {
-  width: 25%;
-  padding: 20rpx;
-  border: none;
-}
-
-.shop-list-wrap .content-wrap .tabs-wrap .weui-navbar__item {
-  padding: 15rpx 0;
-}
-
-.shop-list-wrap .weui-media-box {
-  padding: 15rpx;
-}
-
-.shop-list-wrap .weui-panel {
-  margin: 0;
-}
-
-.weui-cell.weui-cell_access.weui-cell_link .head {
-  font-size: 30rpx;
-  line-height: 1;
-  color: #282828;
-}
-
-.weui-cell.weui-cell_access.weui-cell_link .weui-cell__bd {
-  text-align: right;
-}
-
-.shop-list-wrap .weui-media-box__title {
-  font-size: 28rpx;
+.profile-wrap {
+  margin: 0 15rpx;
+  background-color: #fff;
 }
 </style>
