@@ -6,6 +6,7 @@
     <section class="content-wrap">
       <link-field
         v-for="item in formList"
+        :icon="item.icon"
         :key="item.url"
         :url="item.url"
         :title="item.title"
@@ -41,19 +42,19 @@ export default {
       },
       formList: [{
         icon: "/static/images/read.png",
-        url: '/pages/samples/uploader/main',
-        title: '我的东西',
-        content: '这可是我的东西',
+        url: '/pages/samples/buttons/main',
+        title: '按钮',
+        content: '示例页面',
       },{
         icon: "/static/images/read.png",
         url: '/pages/samples/uploader/main',
-        title: '我的东西',
-        content: '这可是我的东西',
+        title: '上传',
+        content: '示例页面',
       },{
         icon: "/static/images/read.png",
-        url: '/pages/samples/uploader/main',
-        title: '我的东西',
-        content: '这可是我的东西',
+        url: '/pages/samples/picker/main',
+        title: '皮克儿',
+        content: '示例页面',
       }]
     }
   },

@@ -8,11 +8,12 @@
         </div>
         <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
           <div class="weui-media-box__title">
-            <open-data type="userGender" lang="zh_CN"></open-data>
+            <open-data type="userGender" lang="zh_CN"></open-data>&nbsp;
             <open-data type="userNickName"></open-data>
           </div>
           <div class="weui-media-box__desc">
-            <open-data type="userNickName"></open-data>
+            手机号：{{phone || wxPhone}}
+            <mp-button v-if="!phone && !wxPhone" open-type="getPhoneNumber" @getPhoneNumber="getPhoneNumber" :plain="true" type="primary" size="small" buttonClass="mb15">绑定手机</mp-button>
           </div>
         </div>
       </div>
@@ -21,42 +22,55 @@
 </template>
 
 <script>
-export default {
-  name: 'ProfileHeader',
-  props: {
-    avatar: {
-      type: String,
-      default: ''
+  import mpButton from 'mpvue-weui/src/button'
+  export default {
+    name: 'ProfileHeader',
+    components: {
+      mpButton
     },
-    name: {
-      type: String,
-      default: ''
+    props: {
+      avatar: {
+        type: String,
+        default: ''
+      },
+      name: {
+        type: String,
+        default: ''
+      },
+      phone: {
+        type: String,
+        default: ''
+      }
     },
-    phone: {
-      type: String,
-      default: ''
-    }
+    data() {
+      return {
+        wxPhone: ''
+      }
+    },
+    methods: {
+      getPhoneNumber(data) {
+        debugger
+      }
+    },
   }
-}
 </script>
 
 <style>
-.weui-media-box__thumb {
-  display: flex;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  margin-top: 50rpx;
-}
-.weui-media-box__thumb .avatar-box {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin: -50rpx -30rpx;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 30rpx solid #fff;
-}
+  .weui-media-box__thumb {
+    position: relative;
+  }
+  .weui-media-box__thumb .avatar-box {
+    position: absolute;
+    top: -42%;
+    left: -42%;
+    right: -42%;
+    bottom: -42%;
+    margin: auto;
+    width: 142%;
+    height: 142%;
+    border-radius: 50%;
+    border: 0.75em solid #fff;
+    background-color: transparent;
+    box-sizing: border-box;
+  }
 </style>
