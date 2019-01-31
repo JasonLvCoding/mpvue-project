@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "mpvueTemplateProjectVersion": "0.0.1",
   "description": "A Mpvue project",
-  "author": "zhangsong <zhangsong@beeboxes.com>",
+  "author": "zhangsong <zhangsongai3@gmail.com>",
   "private": true,
   "scripts": {
     "dev:wx": "node build/dev-server.js wx",
