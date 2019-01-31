@@ -1,5 +1,5 @@
 <template>
-  <div class="profile-wrap">
+  <div class="profile">
     <header class="header">
       <profile-head :avatar="userInfo.avatar" :name="userInfo.name" :phone="userInfo.phone"></profile-head>
     </header>
@@ -35,11 +35,21 @@ export default {
   data() {
     return {
       userInfo: {
-        avatar: '/static/images/water.png',
-        phone: '17736207172',
-        name: 'Jason Zhang'
+        avatar: '',
+        phone: '',
+        name: ''
       },
       formList: [{
+        icon: "/static/images/read.png",
+        url: '/pages/samples/uploader/main',
+        title: '我的东西',
+        content: '这可是我的东西',
+      },{
+        icon: "/static/images/read.png",
+        url: '/pages/samples/uploader/main',
+        title: '我的东西',
+        content: '这可是我的东西',
+      },{
         icon: "/static/images/read.png",
         url: '/pages/samples/uploader/main',
         title: '我的东西',
@@ -51,12 +61,19 @@ export default {
   mounted() {
   },
 
-  methods: {}
+  methods: {
+  }
 }
 </script>
 <style>
-.profile-wrap {
-  margin: 0 15rpx;
+.profile {
+  margin: 0;
+  background-color: #eee;
+}
+
+.profile .content-wrap {
+  margin-top: 20rpx;
   background-color: #fff;
 }
+
 </style>
