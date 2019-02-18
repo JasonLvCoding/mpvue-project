@@ -110,7 +110,7 @@
 </template>
 
 <script>
-import base64 from '../../../../static/images/add.png';
+import base64 from '../../../../static/images/home.png';
 export default {
   data() {
     return {

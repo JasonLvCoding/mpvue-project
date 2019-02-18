@@ -77,7 +77,7 @@ export default {
   },
 
   methods: {
-    getUserInfo(userInfo) {
+    getUserInfo() {
       wx.getUserInfo({
         success: res => {
           this.userInfo = res.userInfo

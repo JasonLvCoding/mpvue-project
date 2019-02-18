@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/index/main",
+    "pages/shopList/main",
+    "pages/profile/main",
     "pages/links/main",
     "pages/samples/buttons/main",
     "pages/samples/slider/main",
@@ -14,40 +16,36 @@
   ],
   "window": {
     "enablePullDownRefresh": true,
+    "backgroundColor": "#eee",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "backgroundColorBottom": "#eee",
+    "navigationBarBackgroundColor": "#54cbec",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "Flappy Bird"
   },
   "tabBar": {
   "color": "#999999",
   "selectedColor": "#1AAD16",
   "backgroundColor": "#ffffff",
-  "borderStyle": "white",
+  "borderStyle": "black",
   "list": [
     {
       "pagePath": "pages/index/main",
       "text": "首页",
-      "iconPath": "static/images/empty.png",
-      "selectedIconPath": "static/images/empty.png"
+      "iconPath": "static/images/tabbars/home1.png",
+      "selectedIconPath": "static/images/tabbars/home1.png"
     },
     {
-      "pagePath": "pages/samples/buttons/main",
-      "text": "Buttons",
-      "iconPath": "static/images/empty.png",
-      "selectedIconPath": "static/images/empty.png"
+      "pagePath": "pages/shopList/main",
+      "text": "数据",
+      "iconPath": "static/images/tabbars/libv.png",
+      "selectedIconPath": "static/images/tabbars/libv.png"
     },
     {
-      "pagePath": "pages/samples/grid/main",
-      "text": "Grid",
-      "iconPath": "static/images/empty.png",
-      "selectedIconPath": "static/images/empty.png"
-    },
-    {
-      "pagePath": "pages/samples/picker/main",
-      "text": "Picker",
-      "iconPath": "static/images/empty.png",
-      "selectedIconPath": "static/images/empty.png"
+      "pagePath": "pages/profile/main",
+      "text": "我",
+      "iconPath": "static/images/tabbars/my.png",
+      "selectedIconPath": "static/images/tabbars/my.png"
     }
   ]
 }

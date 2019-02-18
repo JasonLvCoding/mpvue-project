@@ -2,10 +2,10 @@ export default {
   
   data() {
     return {
-      $_loadingState: null,
+      loadingState: null,
       $_dataContainer: 'listData',
       $_action: '',
-      $_params: {},
+      $_params: '',
       $_enablePullDownRefresh: false,
       $_pullUpLoadmore: false
     }
@@ -16,12 +16,12 @@ export default {
       if(!option.action) return console.error('no action to get list data')
       this.$_action = option.action
       this.$_dataContainer = option.dataContainer
-      this.$_params = this.$data[option.searchParams] || null
-      this.$_pullDownRefresh = !!this.$data[option.pullDownRefresh]
-      this.$_pullUpLoadmore = !!this.$data[option.pullUpLoadmore]
+      this.$_params = option.searchParams || null
+      this.$_pullDownRefresh = !!option.pullDownRefresh
+      this.$_pullUpLoadmore = !!option.pullUpLoadmore
     },
     $_setListData(res) {
-      if(this.$_loadingState != 'loadmore') {
+      if(this.loadingState != 'loadmore') {
         this.$data[this.$_dataContainer] = res
       }else {
         let data = this.$data[this.$_dataContainer] && this.$data[this.$_dataContainer].content || []
@@ -32,23 +32,28 @@ export default {
       this._resetLoadingState()
     },
     $_resetLoadingState() {
-      this.$_loadingState = null
-      wx.hideNavigationBarLoading()
+      this.loadingState = null
       wx.stopPullDownRefresh()
     },
     searchListData() {
-      this.$_loadingState = 'search'
+      this.loadingState = 'search'
       this.$_getListData()
     },
     $_getListData() {
       this.$store
-        .dispatch(this.$_action, this.$_params)
+        .dispatch(this.$_action, this.$data[this.$_params])
         .then(res => {
           this.$_setListData(res)
+          this.$_resetLoadingState()
         })
         .catch(error => {
+          this.$_resetLoadingState()          
           this.handleListError(error)
         })
+    },
+    loadmore() {
+      this.loadingState = 'loadmore'
+      this.$_getListData()
     },
     handleListError() {
     }
@@ -56,20 +61,17 @@ export default {
   },
 
   // 上拉加载
-  onReachBottom: function() {
-    if(!this.$_pullUploadmore) return
-    this.$_loadingState = 'loadmore'
-    this.$_getListData()
+  onReachBottom() {
+    if(!this.$_pullUpLoadmore) return
+    this.loadmore()
   },
   // 下拉刷新
   onPullDownRefresh() {
     if(!this.$_pullDownRefresh) {
-      wx.hideNavigationBarLoading()
       wx.stopPullDownRefresh()
       return
     }
-    this.$_loadingState = 'refresh'
-    wx.showNavigationBarLoading()
+    this.loadingState = 'refresh'
     this.$_getListData()
   }
 
