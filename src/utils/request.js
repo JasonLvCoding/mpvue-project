@@ -5,7 +5,7 @@ const $fly = new Fly;
 const requestQueue = [];
 
 $fly.config.timeout = 5000;
-$fly.config.baseURL = 'http://192.168.28.232:3000'
+$fly.config.baseURL = 'http://192.168.29.180:3000'
 //添加请求拦截器
 $fly.interceptors.request.use((request) => {
   //给所有请求添加自定义header
